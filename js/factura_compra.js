@@ -359,8 +359,8 @@ function comprobar2() {
                                 for (var t = 0; t < fil.length; t++) {
                                     var dd = fil[t];
                                     if (dd['iva'] === "Si") {
-                                        subtotal = (subtotal + parseFloat(dd['precio_t']));
-                                        var sub = parseFloat(subtotal).toFixed(2);
+                                         subtotal = (subtotal + parseFloat(dd['precio_t']));
+                                         var sub = parseFloat(subtotal).toFixed(2);
                                          mu = (dd['cantidad'] * dd['precio_u']).toFixed(2);
                                          des = ((mu * dd['descuento'])/100).toFixed(2);
                                          descu = (parseFloat(descu) + parseFloat(des)).toFixed(2); 
@@ -896,6 +896,39 @@ function limpiar_campo3(){
     }
 }
 
+function numeros(e) { 
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+patron = /\d/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
+}
+
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
     jQuery().UItoTop({ easingType: 'easeOutQuart' });
     //////////////para hora///////////
@@ -930,7 +963,19 @@ function inicio() {
     });
     
     $("#btnImprimir").click(function (){
-        window.open("../reportes/reportes/factura_compra.php?hoja=A4&id="+$("#comprobante").val(),'_blank');
+        $.ajax({
+        type: "POST",
+        url: "../procesos/validacion.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "factura_compra" + "&id_tabla=" + "id_factura_compra" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != "") {
+                window.open("../reportes/reportes/factura_compra.php?hoja=A4&id="+$("#comprobante").val(),'_blank');  
+            } else {
+              alertify.alert("Factura no creada!!");
+            }   
+        }
+        });
     });
 
     $("#btncargar").on("click", abrirDialogo);
@@ -991,57 +1036,9 @@ function inicio() {
     /////////////////////////////////
 
     //////////////para precio////////
-    $("#precio").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
+    $("#precio").on("keypress",punto);
     ////////////////////////////////
 
-    ///////////adelanto//////////////
-    $("#adelanto").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
     //////////////////////////////
 
     $("#tipo_docu").change(function() {
@@ -1276,8 +1273,8 @@ function inicio() {
             {name: 'cod_producto', index: 'cod_producto', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
             {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 100},
             {name: 'detalle', index: 'detalle', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 290},
-            {name: 'cantidad', index: 'cantidad', editable: true, frozen: true, editrules: {required: true}, align: 'center', width: 70},
-            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
+            {name: 'cantidad', index: 'cantidad', editable: true, frozen: true, editrules: {required: true}, align: 'center', width: 70, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
+            {name: 'precio_u', index: 'precio_u', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return punto(e)})}}}, 
             {name: 'descuento', index: 'descuento', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 70},
             {name: 'precio_t', index: 'precio_t', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
             {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true}
@@ -1556,7 +1553,7 @@ function inicio() {
            var ret = jQuery("#list3").jqGrid('getRowData', id);
            var valor = ret.id_factura_compra;
             /////////////agregregar factura compra////////
-           $("#comprobante").val(ret.id_factura_compra);
+           $("#comprobante").val(valor);
            $("#btnGuardar").attr("disabled", true);
             $("#btnModificar").attr("disabled", true);
             $("#btncargar").attr("disabled", true);
@@ -1673,7 +1670,7 @@ function inicio() {
            var ret = jQuery("#list3").jqGrid('getRowData', id);
            var valor = ret.id_factura_compra;
             /////////////agregregar factura compra////////
-            $("#comprobante").val(ret.id_factura_compra);
+            $("#comprobante").val(valor);
             $("#btnGuardar").attr("disabled", true);
             $("#btnModificar").attr("disabled", true);
             $("#btncargar").attr("disabled", true);

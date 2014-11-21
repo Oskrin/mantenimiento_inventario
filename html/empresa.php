@@ -20,14 +20,16 @@ include '../menus/menu.php';
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/alertify.core.css" />
+        <link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
         <link href="../css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
+        <link href="../css/style.css" rel="stylesheet">
 
-        <script type="text/javascript" src="../js/base.js"></script>
+        <script type="text/javascript"src="../js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
         <script type="text/javascript" src="../js/jquery-loader.js"></script>
-        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <!--<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>-->
         <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/grid.locale-es.js"></script>
         <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
@@ -38,24 +40,19 @@ include '../menus/menu.php';
         <script type="text/javascript" src="../js/ventana_reporte.js"></script>
         <script type="text/javascript" src="../js/guidely/guidely.min.js"></script>
         <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
+        <script type="text/javascript" src="../js/alertify.min.js"></script>
     </head>
 
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>			
-                </div> 
-            </div> 
-        </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <!-- /Inicio  Menu Principal -->
         <div class="subnavbar">
@@ -83,14 +80,14 @@ include '../menus/menu.php';
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-cog"></i>
                                     <h3>EMPRESA</h3>
                                 </div> <!-- /widget-header -->
 
                                 <div class="widget-content">
                                     <div class="tabbable">
                                         <fieldset>
-                                            <form class="form-horizontal" id="empresa_form" name="empresa_form" method="post"  enctype="multipart/form-data" action="../procesos/guardar_empresa.php">
+                                            <form class="form-horizontal" id="empresa_form" name="empresa_form" method="post"  enctype="multipart/form-data">
                                                 <section class="columna1_empresa">
                                                     <div class="control-group">
                                                         <label class="control-label" for="nombre_empresa">Nombre empresa: <font color="red">*</font></label>
@@ -116,9 +113,16 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="celular_empresa">Celular: </label>
                                                         <div class="controls">
-                                                            <input type="text" name="celular_empresa"  id="celular_empresa" placeholder="Telefóno empresa" required class="campo">
+                                                            <input type="text" name="celular_empresa"  id="celular_empresa" placeholder="Telefóno empresa" maxlength="10" required class="campo">
                                                         </div>	
                                                     </div> 
+
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="ciudad_empresa">Ciudad: <font color="red">*</font></label>
+                                                        <div class="controls">
+                                                            <input type="text" name="ciudad_empresa"  id="ciudad_empresa" placeholder="Ciudad empresa" required class="campo">
+                                                        </div>	
+                                                    </div>
 
                                                     <div class="control-group">
                                                         <label class="control-label" for="correo_empresa">E-mail: </label>
@@ -154,7 +158,14 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="telefono_empresa">Telefóno: <font color="red">*</font></label>
                                                         <div class="controls">
-                                                            <input type="text" name="telefono_empresa"  id="telefono_empresa" placeholder="Telefóno empresa" required class="campo">
+                                                            <input type="text" name="telefono_empresa"  id="telefono_empresa" placeholder="Telefóno empresa" maxlength="10" required class="campo">
+                                                        </div>	
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="pais_empresa">País: <font color="red">*</font></label>
+                                                        <div class="controls">
+                                                            <input type="text" name="pais_empresa"  id="pais_empresa" placeholder="País empresa" required class="campo">
                                                         </div>	
                                                     </div>
 
@@ -202,6 +213,7 @@ include '../menus/menu.php';
                 </div> 
             </div> 
         </div> 
+        <script type="text/javascript" src="../js/base.js"></script>
 
         <div class="footer">
             <div class="footer-inner">

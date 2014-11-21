@@ -44,6 +44,7 @@ if ($search == "true") {
             $SQL = "select * from registro_equipo,color,marcas,clientes,usuario,categoria where registro_equipo.id_color=color.id_color and registro_equipo.id_marca=marcas.id_marca and registro_equipo.id_cliente=clientes.id_cliente and registro_equipo.id_usuario=usuario.id_usuario and registro_equipo.id_categoria=categoria.id_categoria and registro_equipo.estado='$_GET[searchString]' and registro_equipo.estado='0' order by registro_equipo.fecha_ingreso $sord offset $start limit $limit";
         }
     }
+    
     if ($_GET['searchOper'] == "bw") {
         if ($_GET['searchField'] == "txtCliente") {
             $SQL = "select * from registro_equipo,color,marcas,clientes,usuario,categoria where registro_equipo.id_color=color.id_color and registro_equipo.id_marca=marcas.id_marca and registro_equipo.id_cliente=clientes.id_cliente and registro_equipo.id_usuario=usuario.id_usuario and registro_equipo.id_categoria=categoria.id_categoria and (clientes.nombres_cli like'%$_GET[searchString]%') and registro_equipo.estado='0' order by registro_equipo.fecha_ingreso $sord offset $start limit $limit";
@@ -84,8 +85,8 @@ while ($row = pg_fetch_row($result)) {
     $s .= "<cell>" . $row[12] . "</cell>";
     $s .= "<cell>" . $row[4] . "</cell>";
     $s .= "<cell>" . $row[11] . "</cell>";
-    $s .= "<cell>" . $row[46] . "</cell>";
     $s .= "<cell>" . $row[47] . "</cell>";
+    $s .= "<cell>" . $row[48] . "</cell>";
     $s .= "<cell>" . $row[18] . "</cell>";
     $s .= "<cell>" . $row[19] . "</cell>";
     $s .= "<cell>" . $row[15] . "</cell>";

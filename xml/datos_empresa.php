@@ -60,7 +60,7 @@ if ($search == 'false') {
         $SQL = "select * from empresa where $campo not like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
 }
-//echo $SQL;
+
 $result = pg_query($SQL);
 header("Content-type: text/xml;charset=utf-8");
 $s = "<?xml version='1.0' encoding='utf-8'?>";
@@ -71,17 +71,19 @@ $s .= "<records>" . $count . "</records>";
 while ($row = pg_fetch_row($result)) {
     $s .= "<row id='" . $row[0] . "'>";
     $s .= "<cell>" . $row[0] . "</cell>";
-    $s .= "<cell>" . utf8_encode($row[1]) . "</cell>";
+    $s .= "<cell>" . htmlspecialchars($row[1]) . "</cell>";
     $s .= "<cell>" . $row[2] . "</cell>";
-    $s .= "<cell>" . $row[9] . "</cell>";
-    $s .= "<cell>" . $row[10] . "</cell>";
+    $s .= "<cell>" . $row[11] . "</cell>";
+    $s .= "<cell>" . $row[12] . "</cell>";
     $s .= "<cell>" . $row[3] . "</cell>";
     $s .= "<cell>" . $row[4] . "</cell>";
     $s .= "<cell>" . $row[5] . "</cell>";
     $s .= "<cell>" . $row[6] . "</cell>";
     $s .= "<cell>" . $row[7] . "</cell>";
     $s .= "<cell>" . $row[8] . "</cell>";
-    $s .= "<cell>" . $row[11] . "</cell>";
+    $s .= "<cell>" . $row[9] . "</cell>";
+    $s .= "<cell>" . htmlspecialchars($row[10]) . "</cell>";
+    $s .= "<cell>" . $row[13] . "</cell>";
     $s .= "</row>";
 }
 $s .= "</rows>";

@@ -6,10 +6,10 @@ if (empty($_SESSION['id'])) {
 include '../menus/menu.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>.:INGRESO CLIENTES:.</title>
+        <meta charset="utf-8">
+        <title>.:CLIENTES:.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes"> 
         <link rel="stylesheet" type="text/css" href="../css/buttons.css"/>
@@ -21,6 +21,7 @@ include '../menus/menu.php';
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/link_top.css" rel="stylesheet" />
         <link rel="stylesheet" href="../css/alertify.core.css" />
         <link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
@@ -47,17 +48,11 @@ include '../menus/menu.php';
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>			
-                </div> 
-            </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
         </div> 
 
         <div class="subnavbar">
@@ -181,7 +176,10 @@ include '../menus/menu.php';
                                                     <div class="control-group">
                                                         <label class="control-label" for="email">E-mail: </label>
                                                         <div class="controls">
-                                                            <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="campo"/>
+                                                            <div class="input-prepend input-append">
+                                                                <span class="add-on">@</span>
+                                                                <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="campo" style="width: 165px"/>
+                                                            </div>
                                                         </div>
                                                     </div>
 

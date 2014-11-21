@@ -43,9 +43,8 @@ function inicio(){
     }
     $("#btnGuardarCargar").on("click",guardarCargar);
 }
-function cargar(){
 
-}
+
 function guardarCargar(){
      $("#tabla_excel tbody").empty(); 
 	$("#formulario_excel").submit(function(e)

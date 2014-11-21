@@ -1,4 +1,4 @@
-﻿$(document).on("ready", inicio);
+$(document).on("ready", inicio);
 
 $(function() {
     $('#main-menu').smartmenus({
@@ -7,9 +7,17 @@ $(function() {
     });
 });
 
+function numeros(e) { 
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+patron = /\d/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
+}
+
 function inicio() {
     $(window).bind('resize', function() {
-    jQuery("#list").setGridWidth($('#centro').width() - 10);
+        jQuery("#list").setGridWidth($('#centro').width() - 10);
     }).trigger('resize');
     jQuery("#list").jqGrid({
         url: '../xml/xmlUsuario.php',
@@ -17,16 +25,16 @@ function inicio() {
         colNames: ['Cod. Usuario', 'CI Usuario', 'Nombres Usuario', 'Apellidos Usuario', 'Dirección Usuario', 'Teléfono Usuario', 'Celular Usuario', 'E-mail Usuario', 'User', 'Clave', 'Cargo'],
         colModel: [
             {name: 'id_usuario', index: 'id_usuario', editable: true, align: 'center', width: '100', search: false, frozen: true, editoptions: {readonly: 'readonly'}},
-            {name: 'ci_usuario', index: 'ci_usuario', editable: true, align: 'center', width: '100', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
+            {name: 'ci_usuario', index: 'ci_usuario', editable: true, align: 'center', width: '100', size: '10', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}, editoptions:{maxlength: 10, size:20,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
             {name: 'nombre_usuario', index: 'nombre_usuario', editable: true, align: 'center', width: '140', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'apellido_usuario', index: 'apellido_usuario', editable: true, align: 'center', width: '140', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
-            {name: 'direccion_usuario', index: 'direccion_usuario', editable: true, align: 'center', width: '140', search: true},
-            {name: 'telefono_usuario', index: 'telefono_usuario', editable: true, align: 'center', width: '140', search: true},
-            {name: 'celular_usuario', index: 'celular_usuario', editable: true, align: 'center', width: '140', search: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
-            {name: 'email_usuario', index: 'email_usuario', editable: true, align: 'center', width: '140', search: true, formatter: 'email'},
-            {name: 'user', index: 'user', editable: true, align: 'center', width: '140', search: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
+            {name: 'direccion_usuario', index: 'direccion_usuario', editable: true, align: 'center', width: '140', search: false},
+            {name: 'telefono_usuario', index: 'telefono_usuario', editable: true, align: 'center', width: '140', search: false, editrules: {required: true}, editoptions:{maxlength: 10, size:20,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
+            {name: 'celular_usuario', index: 'celular_usuario', editable: true, align: 'center', width: '140', search: false, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}, editoptions:{maxlength: 10, size:20,dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}}, 
+            {name: 'email_usuario', index: 'email_usuario', editable: true, align: 'center', width: '140', search: false, formatter: 'email'},
+            {name: 'user', index: 'user', editable: true, align: 'center', width: '140', search: false, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
             {name: 'password_usuario', index: 'password_usuario', editable: true, align: 'center', width: '140', search: false, formoptions: {elmsuffix: " (*)"}, editrules: {edithidden: true, required: true}, edittype: 'password', hidden: true},
-            {name: 'cargo_usuario', index: 'cargo_usuario', width: 240, align: 'center', editable: true, edittype: "select", editoptions: {value: "1:Administrador;2:Secretaria"}}
+            {name: 'cargo_usuario', index: 'cargo_usuario', width:'300',search: false, align: 'center', editable: true, edittype: "select", editoptions: {value: "1:Administrador;2:Vendedor"}},
         ],
         rowNum: 10,
         rowList: [10, 20, 30],
@@ -43,14 +51,13 @@ function inicio() {
             {
                 add: true,
                 edit: true,
-                del: false,
+                del: true,
                 refresh: true,
                 search: true,
                 view: true,
                 addtext: "Nuevo",
                 edittext: "Modificar",
-                refreshtext: "Recargar",
-                viewtext: "Consultar"
+                deltext: "Eliminar"
             },
     {
         recreateForm: true, closeAfterEdit: true, checkOnUpdate: true, reloadAfterSubmit: true, closeOnEscape: true
@@ -73,7 +80,6 @@ function inicio() {
     {
         closeOnEscape: true
     });
-    jQuery("#list").jqGrid('setFrozenColumns');
     jQuery("#list").setGridWidth($('#centro').width() - 10);
 }
 

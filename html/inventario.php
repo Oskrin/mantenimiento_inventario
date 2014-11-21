@@ -61,17 +61,11 @@ $cont1++;
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>		
-                </div> 
-            </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
         </div> 
 
         <!-- /Inicio  Menu Principal -->
@@ -100,7 +94,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-file"></i>
                                     <h3>INVENTARIO GENERAL</h3>
                                 </div> <!-- /widget-header -->
 
@@ -163,7 +157,7 @@ $cont1++;
                                                                 <td><input type="text" name="codigo" id="codigo" class="campo" style="width: 200px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="producto" id="producto" class="campo" style="width: 200px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="cantidad" id="cantidad" class="campo" style="width: 60px" maxlength="10"/></td>
-                                                                <td><input type="text" name="precio" id="precio" style="width: 60px" class="campo"/></td>
+                                                                <td><input type="text" name="precio" id="precio" style="width: 60px" readonly class="campo"/></td>
                                                                 <td><input type="text" name="stock" id="stock" class="campo" style="width: 60px" maxlength="10" value="" readonly/></td>
                                                                 <td><input type="hidden" name="p_venta" id="p_venta" class="campo" style="width: 60px" maxlength="10" value="" readonly/></td>
                                                                 <td><input type="hidden" name="existencia" id="existencia" class="campo" style="width: 60px" maxlength="10" value="" readonly/></td>

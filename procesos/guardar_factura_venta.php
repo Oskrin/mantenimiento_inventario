@@ -4,7 +4,7 @@ session_start();
 include 'base.php';
 conectarse();
 error_reporting(0);
-//
+////
 /////datos detalle factura/////
 $campo1 = $_POST['campo1'];
 $campo2 = $_POST['campo2'];

@@ -46,17 +46,11 @@ include '../menus/menu.php';
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>			
-                </div> 
-            </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
         </div> 
 
         <!-- /Inicio  Menu Principal -->
@@ -85,8 +79,8 @@ include '../menus/menu.php';
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
-                                    <h3>ENTREGA</h3>
+                                    <i class="icon-check"></i>
+                                    <h3>ENTREGA DE EQUIPOS</h3>
                                 </div> <!-- /widget-header -->
 
                                 <div class="widget-content">
@@ -248,12 +242,34 @@ include '../menus/menu.php';
                                             <button class="btn btn-primary" id='btnFacturar'><i class="icon-th-list"></i> Facturar</button>
                                         </div>
                                     </div>
+
                                     <div id="tablaEn" style="margin-left:  10px">
-                                        <table id="list"></table>
-                                        <div id="pager"></div>
-                                        <br/>
-                                        <table id="list1"></table>
-                                        <div id="pager1"></div>
+                                        <div class="alert alert-success" >
+                                            Estados de todos los esquipos ingresados 
+                                        </div> 
+                                        <div class="widget widget-nopad">
+                                            <div class="widget-content">
+                                                <div class="widget big-stats-container">
+                                                    <br />
+                                                    <div style="margin-left: 3px">
+                                                        <table id="list"></table>
+                                                        <div id="pager"></div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="widget widget-nopad">
+                                            <div class="widget-content">
+                                                <div class="widget big-stats-container">
+                                                    <br />
+                                                    <div style="margin-left: 3px">
+                                                        <table id="list1"></table>
+                                                        <div id="pager1"></div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div> 
                             </div>

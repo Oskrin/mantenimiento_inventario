@@ -281,11 +281,11 @@ function comprobar2() {
                                     if (dd['iva'] === "Si") {
                                         subtotal = (subtotal + parseFloat(dd['total']));
                                         var sub = parseFloat(subtotal).toFixed(2);
+                                        iva = ((subtotal * 12) / 100).toFixed(2);
+                                        t_fc = ((parseFloat(sub) + parseFloat(iva)) + parseFloat($("#total_p").val())).toFixed(2);
                                         $("#iva_producto option[value=" + 'Elija' + "]").attr("selected", true);
                                     }
                                 }
-                                iva = ((subtotal * 12) / 100).toFixed(2);
-                                t_fc = ((parseFloat(subtotal) + parseFloat(iva)) + parseFloat($("#total_p").val())).toFixed(2);
                                 $("#total_p2").val(sub);
                                 $("#iva").val(iva);
                                 $("#tot").val(t_fc);
@@ -295,16 +295,16 @@ function comprobar2() {
                                     subtotal = 0;
                                     t_fc = 0;
                                     iva = 0;
-                                    for (var t = 0; t < fil.length; t++) {
-                                        var dd = fil[t];
+                                    for (t = 0; t < fil.length; t++) {
+                                         dd = fil[t];
                                         if (dd['iva'] === "No") {
                                             subtotal = (subtotal + parseFloat(dd['total']));
-                                            var sub = parseFloat(subtotal).toFixed(2);
+                                            sub = parseFloat(subtotal).toFixed(2);
+                                            iva = parseFloat($("#iva").val());
+                                            t_fc = ((parseFloat(sub) + parseFloat(iva)) + parseFloat($("#total_p2").val())).toFixed(2);
                                             $("#iva_producto option[value=" + 'Elija' + "]").attr("selected", true);
                                         }
                                     }
-                                    iva = parseFloat($("#iva").val());
-                                    t_fc = ((parseFloat(subtotal) + parseFloat(iva)) + parseFloat($("#total_p2").val())).toFixed(2);
                                     $("#total_p").val(sub);
                                     $("#tot").val(t_fc);
                                 }
@@ -565,6 +565,31 @@ function limpiar_campo2(){
     }
 }
 
+function punto(e){
+ var key;
+if (window.event)
+{
+    key = e.keyCode;
+}
+else if (e.which)
+{
+    key = e.which;
+}
+
+if (key < 48 || key > 57)
+{
+    if (key === 46 || key === 8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+return true;   
+}
+
 function inicio() {
     jQuery().UItoTop({ easingType: 'easeOutQuart' });
 
@@ -632,60 +657,8 @@ function inicio() {
     });
 
     //////////////para precio////////
-
-    $("#precio").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-
+    $("#precio").on("keypress",punto);
     ////////////////////////////////
-
-    ///////////adelanto//////////////
-    $("#adelanto").keypress(function(e) {
-        var key;
-        if (window.event)
-        {
-            key = e.keyCode;
-        }
-        else if (e.which)
-        {
-            key = e.which;
-        }
-
-        if (key < 48 || key > 57)
-        {
-            if (key === 46 || key === 8)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    });
-    //////////////////////////////
 
     /////buscador productos codigo///// 
     $("#codigo").autocomplete({
@@ -767,7 +740,7 @@ function inicio() {
             {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
                 frozen: true, width: 100},
             {name: 'detalle', index: 'detalle', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 290},
-            {name: 'cantidad', index: 'cantidad', editable: true, frozen: true, editrules: {required: true}, align: 'center', width: 70},
+            {name: 'cantidad', index: 'cantidad', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 70},
             {name: 'precio_u', index: 'precio_u', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
             {name: 'descuento', index: 'descuento', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
             {name: 'total', index: 'total', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110},
@@ -973,10 +946,10 @@ function inicio() {
         jQuery('#list2').jqGrid('restoreRow', id);
         
         if (id) {
-           var ret = jQuery("#list2").jqGrid('getRowData', id);
-           var valor = ret.id_ingresos;
+        var ret = jQuery("#list2").jqGrid('getRowData', id);
+        var valor = ret.id_ingresos;
             /////////////agregregar ingresos////////
-        $("#comprobante").val(ret.id_ingresos);
+        $("#comprobante").val(valor);
         $("#btnGuardar").attr("disabled", true);
         $("#btnModificar").attr("disabled", true);
          
@@ -1085,10 +1058,10 @@ function inicio() {
         var id = jQuery("#list2").jqGrid('getGridParam', 'selrow');
         jQuery('#list2').jqGrid('restoreRow', id);
         if (id) {
-           var ret = jQuery("#list2").jqGrid('getRowData', id);
-           var valor = ret.id_ingresos;
+        var ret = jQuery("#list2").jqGrid('getRowData', id);
+        var valor = ret.id_ingresos;
             /////////////agregregar ingresos////////
-        $("#comprobante").val(ret.id_ingresos);
+        $("#comprobante").val(valor);
         $("#btnGuardar").attr("disabled", true);
         $("#btnModificar").attr("disabled", true);
          

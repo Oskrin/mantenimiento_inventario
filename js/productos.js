@@ -1,4 +1,4 @@
-﻿$(document).on("ready", inicio);
+$(document).on("ready", inicio);
 function evento(e) {
     e.preventDefault();
 }
@@ -72,6 +72,17 @@ var dialogo4 ={
     hide: "blind"
 }
 
+var dialogo5 ={
+    autoOpen: false,
+    resizable: false,
+    width: 500,
+    height: 400,
+    modal: true,
+    position: "top",
+    show: "explode",
+    hide: "blind"
+}
+
 function abrirDialogo() {
     $("#productos").dialog("open");
 }
@@ -84,16 +95,122 @@ function abrirMarca() {
     $("#marcas").dialog("open");
 }
 
-function descativar() {
-    $("#utilidad_minorista").removeAttr("disabled");
-    $("#utilidad_mayorista").removeAttr("disabled");
-}
+$(function(){
+    Test = {
+        UpdatePreview: function(obj){
 
-function guardar_producto() {
+            if(!window.FileReader){
+
+            } else {
+                var reader = new FileReader();
+                var target = null;
+             
+                reader.onload = function(e) {
+                    target =  e.target || e.srcElement;
+                    $("#foto").prop("src", target.result);
+                };
+                reader.readAsDataURL(obj.files[0]);
+            }
+        }
+    };
+});
+
+function guardar_producto(){
     if ($("#cod_prod").val() === "") {
         $("#cod_prod").focus();
         alertify.alert("Indique un Código");
     } else {
+        if ($("#nombre_art").val() === "") {
+            $("#nombre_art").focus();
+            alertify.alert("Nombre del producto");
+        } else {
+            if ($("#iva").val() === "") {
+                $("#iva").focus();
+                alertify.alert("Seleccione una opción");
+            } else {
+                if ($("#precio_compra").val() === "") {
+                    $("#precio_compra").focus();
+                    alertify.alert("Indique un precio");
+                } else {
+                    if ($("#series").val() === "") {
+                        $("#series").focus();
+                        alertify.alert("Seleccione una opción");
+                    } else {
+                        if ($("#utilidad_minorista").val() === "") {
+                            $("#utilidad_minorista").focus();
+                            alertify.alert("Ingrese la utilidad al minorista");
+                        } else {
+                            if ($("#utilidad_mayorista").val() === "") {
+                                $("#utilidad_mayorista").focus();
+                                alertify.alert("Ingrese la utilidad al mayorista");
+                            } else {
+                                if ($("#fecha_creacion").val() === "") {
+                                    $("#fecha_creacion").focus();
+                                    alertify.alert("Indique una fecha");
+                                }else{
+                                    $("#productos_form").submit(function(e) {
+                                        var formObj = $(this);
+                                        var formURL = formObj.attr("action");
+                                        if(window.FormData !== undefined) {	
+                                            var formData = new FormData(this);   
+                                            formURL=formURL; 
+                                            
+                                            $.ajax({
+                                                url: "../procesos/guardar_productos.php",
+                                                type: "POST",
+                                                data:  formData,
+                                                mimeType:"multipart/form-data",
+                                                contentType: false,
+                                                cache: false,
+                                                processData:false,
+                                                success: function(data, textStatus, jqXHR)
+                                                {
+                                                    var res=data;
+                                                    if(res == 1){
+                                                        alertify.alert("Datos Guardados Correctamente",function(){
+                                                            location.reload();
+                                                        });
+                                                    } else{
+                                                        alertify.alert("Error..... Datos no Guardados");
+                                                    }
+                                                },
+                                                error: function(jqXHR, textStatus, errorThrown) 
+                                                {
+                                                } 	        
+                                            });
+                                            e.preventDefault();
+                                        } else {
+                                            var  iframeId = "unique" + (new Date().getTime());
+                                            var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
+                                            iframe.hide();
+                                            formObj.attr("target",iframeId);
+                                            iframe.appendTo("body");
+                                            iframe.load(function(e) {
+                                                var doc = getDoc(iframe[0]);
+                                                var docRoot = doc.body ? doc.body : doc.documentElement;
+                                                var data = docRoot.innerHTML;
+                                            });
+                                        }
+                                    });
+                                    $("#productos_form").submit();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }     
+}
+
+function modificar_producto(){
+    if ($("#cod_productos").val() === "") {
+        alertify.alert("Seleccione un producto");
+    } else {
+        if ($("#cod_prod").val() === "") {
+            $("#cod_prod").focus();
+            alertify.alert("Indique un Código");
+        } else {
             if ($("#nombre_art").val() === "") {
                 $("#nombre_art").focus();
                 alertify.alert("Nombre del producto");
@@ -122,95 +239,51 @@ function guardar_producto() {
                                         $("#fecha_creacion").focus();
                                         alertify.alert("Indique una fecha");
                                     }else{
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "../procesos/guardar_productos.php",
-                                            data: "cod_prod=" + $("#cod_prod").val() + "&cod_barras=" + $("#cod_barras").val()
-                                            + "&nombre_art=" + $("#nombre_art").val() + "&iva=" + $("#iva").val() + "&series=" + $("#series").val()
-                                            + "&precio_compra=" + $("#precio_compra").val() + "&utilidad_minorista=" + $("#utilidad_minorista").val()
-                                            + "&utilidad_mayorista=" + $("#utilidad_mayorista").val() + "&precio_minorista=" + $("#precio_minorista").val()
-                                            + "&precio_mayorista=" + $("#precio_mayorista").val() + "&categoria=" + $("#categoria").val()
-                                            + "&marca=" + $("#marca").val() + "&stock=" + $("#stock").val()
-                                            + "&minimo=" + $("#minimo").val() + "&maximo=" + $("#maximo").val()
-                                            + "&fecha_creacion=" + $("#fecha_creacion").val() + "&vendible=" + $("#vendible").val()
-                                            + "&modelo=" + $("#modelo").val() + "&aplicacion=" + $("#aplicacion").val() + "&descuento=" + $("#descuento").val()+ "&inventario=" + $("#inventario").val(),
-                                            success: function(data) {
-                                                var val = data;
-                                                if (val == 1)
+                                        $("#productos_form").submit(function(e) {
+                                            var formObj = $(this);
+                                            var formURL = formObj.attr("action");
+                                            if(window.FormData !== undefined) {	
+                                                var formData = new FormData(this);   
+                                                formURL=formURL; 
+                                            
+                                                $.ajax({
+                                                    url: "../procesos/modificar_productos.php",
+                                                    type: "POST",
+                                                    data:  formData,
+                                                    mimeType:"multipart/form-data",
+                                                    contentType: false,
+                                                    cache: false,
+                                                    processData:false,
+                                                    success: function(data, textStatus, jqXHR) {
+                                                        var res=data;
+                                                        if(res == 1){
+                                                            alertify.alert("Datos Modificados Correctamente",function(){
+                                                                location.reload();
+                                                            });
+                                                        } else{
+                                                            alertify.alert("Error..... Datos no Modificados");
+                                                        }
+                                                    },
+                                                    error: function(jqXHR, textStatus, errorThrown) 
+                                                    {
+                                                    } 	        
+                                                });
+                                                e.preventDefault();
+                                            } else {
+                                                var  iframeId = "unique" + (new Date().getTime());
+                                                var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
+                                                iframe.hide();
+                                                formObj.attr("target",iframeId);
+                                                iframe.appendTo("body");
+                                                iframe.load(function(e)
                                                 {
-                                                    alertify.alert("Datos Guardados Correctamente",function(){location.reload();});
-                                                }
+                                                    var doc = getDoc(iframe[0]);
+                                                    var docRoot = doc.body ? doc.body : doc.documentElement;
+                                                    var data = docRoot.innerHTML;
+                                                });
                                             }
                                         });
-                                        
-                                    }
-                                }
-                            }
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-function modificar_producto() {
-    if ($("#cod_productos").val() === "") {
-        alertify.alert("Seleccione un producto");
-    } else {
-        if ($("#cod_prod").val() === "") {
-            $("#cod_prod").focus();
-            alertify.alert("Indique un Código");
-        } else {
-                if ($("#nombre_art").val() === "") {
-                    $("#nombre_art").focus();
-                    alertify.alert("Nombre del producto");
-                } else {
-                    if ($("#iva").val() === "") {
-                        $("#iva").focus();
-                        alertify.alert("Seleccione una opción");
-                    } else {
-                        if ($("#precio_compra").val() === "") {
-                            $("#precio_compra").focus();
-                            alertify.alert("Indique un precio");
-                        } else {
-                            if ($("#series").val() === "") {
-                                $("#series").focus();
-                                alertify.alert("Seleccione una opción");
-                            } else {
-                                if ($("#utilidad_minorista").val() === "") {
-                                    $("#utilidad_minorista").focus();
-                                    alertify.alert("Ingrese la utilidad al minorista");
-                                } else {
-                                    if ($("#utilidad_mayorista").val() === "") {
-                                        $("#utilidad_mayorista").focus();
-                                        alertify.alert("Ingrese la utilidad al mayorista");
-                                    } else {
-                                        if ($("#fecha_creacion").val() === "") {
-                                            $("#fecha_creacion").focus();
-                                            alertify.alert("Indique una fecha");
-                                        }else{
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "../procesos/modificar_productos.php",
-                                                data: "cod_prod=" + $("#cod_prod").val() + "&cod_barras=" + $("#cod_barras").val() + "&cod_productos=" + $("#cod_productos").val()
-                                                + "&nombre_art=" + $("#nombre_art").val() + "&iva=" + $("#iva").val() + "&series=" + $("#series").val()
-                                                + "&precio_compra=" + $("#precio_compra").val() + "&utilidad_minorista=" + $("#utilidad_minorista").val()
-                                                + "&utilidad_mayorista=" + $("#utilidad_mayorista").val() + "&precio_minorista=" + $("#precio_minorista").val()
-                                                + "&precio_mayorista=" + $("#precio_mayorista").val() + "&categoria=" + $("#categoria").val()
-                                                + "&marca=" + $("#marca").val() + "&stock=" + $("#stock").val()
-                                                + "&minimo=" + $("#minimo").val() + "&maximo=" + $("#maximo").val()
-                                                + "&fecha_creacion=" + $("#fecha_creacion").val() + "&vendible=" + $("#vendible").val()
-                                                + "&modelo=" + $("#modelo").val() + "&aplicacion=" + $("#aplicacion").val() + "&descuento=" + $("#descuento").val()+ "&inventario=" + $("#inventario").val(),
-                                                success: function(data) {
-                                                    var val = data;
-                                                    if (val == 1)
-                                                    {
-                                                        alertify.alert("Datos Modificados Correctamente",function(){location.reload();});
-                                                    }
-                                                }
-                                            });
-                                        }
+                                        $("#productos_form").submit();
                                     }
                                 }
                             }
@@ -219,7 +292,8 @@ function modificar_producto() {
                 }
             }
         }
-    }
+    }     
+}
 
 
 function eliminar_productos() {
@@ -256,14 +330,16 @@ function validar_acceso(){
 }
 
 function aceptar(){
-$.ajax({
+    $.ajax({
         type: "POST",
         url: "../procesos/eliminar_productos.php",
         data: "cod_productos=" + $("#cod_productos").val(),
         success: function(data) {
             var val = data;
             if (val == 1) {
-                alertify.alert("Producto Eliminado Correctamente",function(){location.reload();});
+                alertify.alert("Producto Eliminado Correctamente",function(){
+                    location.reload();
+                });
             }
         }
     }); 
@@ -328,18 +404,14 @@ function agregar_marca() {
 
 function Valida_punto() {
     var key;
-    if (window.event)
-    {
+    if (window.event) {
         key = event.keyCode;
-    } else if (event.which)
-{
+    } else if (event.which) {
         key = event.which;
     }
 
-    if (key < 48 || key > 57)
-    {
-        if (key === 46 || key === 8)
-        {
+    if (key < 48 || key > 57) {
+        if (key === 46 || key === 8) {
             return true;
         } else {
             return false;
@@ -355,10 +427,140 @@ function ValidNum() {
     return true;
 }
 
+function guardarCargar(){
+    $("#tabla_excel tbody").empty(); 
+    $("#formulario_excel").submit(function(e) {
+        var formObj = $(this);
+        var formURL = formObj.attr("action");
+        if(window.FormData !== undefined) {	
+            var formData = new FormData(this);   
+            formURL=formURL;        	
+            $.ajax({
+                url: "../procesos/guardarExcel.php",
+                type: "POST",
+                data:  formData,
+                mimeType:"multipart/form-data",
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data, textStatus, jqXHR) {
+                    var res=data;
+                    if(res != ""){
+                        cargarTabla(data);
+                        alertify.alert("Datos cargados");
+                    } else{
+                        cargarTabla(data);
+                        alertify.alert("Error..... Al cargar los registros");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) 
+                {
+                } 	        
+            });
+            e.preventDefault();
+            $(this).unbind("submit");
+        } else {
+            var  iframeId = "unique" + (new Date().getTime());
+            var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
+            iframe.hide();
+            formObj.attr("target",iframeId);
+            iframe.appendTo("body");
+            iframe.load(function(e) {
+                var doc = getDoc(iframe[0]);
+                var docRoot = doc.body ? doc.body : doc.documentElement;
+                var data = docRoot.innerHTML;
+            });
+        }
+    });
+	
+}
+
+function cargarTabla(data){
+    for(var i=0;i<data.length;i+=13){
+        vector = new Array();
+        vector[0]=data[i];
+        vector[1]=data[i+1];
+        vector[2]=data[i+2];
+        vector[3]=data[i+3];
+        vector[4]=data[i+4];
+        vector[5]=data[i+5];
+        vector[6]=data[i+6];
+        vector[7]=data[i+7];
+        vector[8]=data[i+8];
+        vector[9]=data[i+9];
+        vector[10]=data[i+10];
+        vector[11]=data[i+11];
+        vector[12]=data[i+12];
+        guardar_datos_excel(vector);
+    }
+}
+
+function guardar_datos_excel(vector){
+    $.ajax({
+        type: "POST",
+        url: "../procesos/guardar_producto_excel.php",
+        data: "var="+vector[0]+"&var1="+vector[1]+"&var2="+vector[2]+"&var3="+vector[3]+"&var4="+vector[4]+"&var5="+vector[5]+"&var6="+vector[6]+"&var7="+vector[7]+"&var8="+vector[8]+"&var9="+vector[9]+"&var10="+vector[10]+"&var11="+vector[11]+"&var12="+vector[12],
+        success: function(data) {
+            var val = data;
+            if (val == 1)
+            {
+                $("#tabla_excel tbody").append( "<tr>" +
+                    "<td align=center>" + vector[0] + "</td>" +
+                    "<td align=center>" + vector[1] + "</td>" +	            
+                    "<td align=center>" + 'Guardado Correctamente' + "</td>" +            
+                    "<td align=center>" + " <a class='elimina'><img src='../imagenes/valid.png'/>"  + "</td>" + "</tr>" );
+            }
+            if (val == 2)
+            {
+                $("#tabla_excel tbody").append( "<tr>" +
+                    "<td align=center>" + vector[0] + "</td>" +
+                    "<td align=center>" + vector[1] + "</td>" +	            
+                    "<td align=center>" + 'Producto Repetido' + "</td>" +            
+                    "<td align=center>" + " <a class='elimina'><img src='../imagenes/invalid.png' />"  + "</td>" + "</tr>" );
+            }
+            if (val == 3)
+            {
+                $("#tabla_excel tbody").append( "<tr>" +
+                    "<td align=center>" + vector[0] + "</td>" +
+                    "<td align=center>" + vector[1] + "</td>" +	            
+                    "<td align=center>" + 'Sintaxis incorrecta' + "</td>" +            
+                    "<td align=center>" + " <a class='elimina'><img src='../imagenes/delete.png' />"  + "</td>" + "</tr>" );
+            }
+        }
+    });
+}
+
 function inicio() {
-     jQuery().UItoTop({ easingType: 'easeOutQuart' });
+    jQuery().UItoTop({
+        easingType: 'easeOutQuart'
+    });
+    
+       
+    //////////////////para cargar fotos/////////////
+    function getDoc(frame) {
+        var doc = null;     
+     	
+        try {
+            if (frame.contentWindow) {
+                doc = frame.contentWindow.document;
+            }
+        } catch(err) {
+        }
+        if (doc) { 
+            return doc;
+        }
+        try { 
+            doc = frame.contentDocument ? frame.contentDocument : frame.document;
+        } catch(err) {
+       
+            doc = frame.document;
+        }
+        return doc;
+    }
+    //////////////////////////
+    
     /////////////////verificar repetidos/////////////
-    /////valida si ya existe/////
     $("#cod_prod").blur(function() {
         if ($("#cod_prod").val().length > 0) {
             $.ajax({
@@ -379,13 +581,12 @@ function inicio() {
     /////////////////////////////////////////////////
 
     /////////atributos/////////////
-    $("#utilidad_minorista").attr("disabled", "disabled");
     $("#utilidad_minorista").attr("maxlength", "5");
-    $("#utilidad_mayorista").attr("disabled", "disabled");
     $("#utilidad_mayorista").attr("maxlength", "5");
     $("#precio_compra").keypress(Valida_punto);
     $("#utilidad_minorista").keypress(ValidNum);
     $("#utilidad_mayorista").keypress(ValidNum);
+    $("#descuento").keypress(ValidNum);
     $("#stock").keypress(ValidNum);
     $("#stock").attr("maxlength", "5");
     $("#maximo").keypress(ValidNum);
@@ -393,8 +594,6 @@ function inicio() {
     $("#minimo").keypress(ValidNum);
     $("#minimo").attr("maxlength", "5");
     ////////////////////////////
-
-    $("#precio_compra").on("keyup", descativar);
 
     /////////botones/////////////
     $("#btnCategoria").click(function(e) {
@@ -409,7 +608,6 @@ function inicio() {
     $("#btnGuardarMarca").click(function(e) {
         e.preventDefault();
     });
-    
     $("#btnGuardar").click(function(e) {
         e.preventDefault();
     });
@@ -425,6 +623,7 @@ function inicio() {
     $("#btnNuevo").click(function(e) {
         e.preventDefault();
     });
+    
 
     $("#btnGuardarCategoria").on("click", agregar_categoria);
     $("#btnGuardarMarca").on("click", agregar_marca);
@@ -439,6 +638,7 @@ function inicio() {
     $("#btnSalir").on("click", cancelar);
     $("#btnAcceder").on("click", validar_acceso);
     $("#btnCancelar").on("click", cancelar_acceso);
+    $("#btnGuardarCargar").on("click",guardarCargar);
     
     $("#productos").dialog(dialogos);
     $("#categorias").dialog(dialogos_categoria);
@@ -446,6 +646,21 @@ function inicio() {
     $("#clave_permiso").dialog(dialogo3);
     $("#seguro").dialog(dialogo4);
     ///////////////////////////////////////////////
+    
+    //////////////imput spinner////////////////
+    $("#stock").spinner({
+        min: 1
+    });
+    $("#minimo").spinner({
+        min: 1
+    });
+    $("#maximo").spinner({
+        min: 1
+    });
+    $("#descuento").spinner({
+        min: 1
+    });
+    /////////////////////////////////
     
     /////////calendarios///////
     $("#fecha_creacion").datepicker({
@@ -455,57 +670,397 @@ function inicio() {
 
     ////calcular datos/////
     $("#utilidad_minorista").keyup(function() {
-        if ($("#utilidad_minorista").val() === "") {
-            $("#precio_minorista").val("");
-        } else {
-            var precio_minorista = ((parseFloat($("#precio_compra").val()) * parseFloat($("#utilidad_minorista").val())) / 100) + parseFloat($("#precio_compra").val());
-            var entero = precio_minorista.toFixed(2);
-            $("#precio_minorista").val(entero);
+        if($("#precio_compra").val() === ""){
+            alertify.alert("Error... Ingrese precio compra", function (){
+                $("#precio_compra").focus();   
+                $("#utilidad_minorista").val(""); 
+            });
+        }else{
+            if ($("#utilidad_minorista").val() === "") {
+                $("#precio_minorista").val("");
+            }else {
+                var precio_minorista = ((parseFloat($("#precio_compra").val()) * parseFloat($("#utilidad_minorista").val())) / 100) + parseFloat($("#precio_compra").val());
+                var entero = precio_minorista.toFixed(2);
+                $("#precio_minorista").val(entero);
+            }
         }
     });
 
     $("#utilidad_mayorista").keyup(function() {
-        if ($("#utilidad_mayorista").val() === "") {
-            $("#precio_mayorista").val("");
-        } else {
-            var precio_mayorista = ((parseFloat($("#precio_compra").val()) * parseFloat($("#utilidad_mayorista").val())) / 100) + parseFloat($("#precio_compra").val());
-            var entero2 = precio_mayorista.toFixed(2);
-            $("#precio_mayorista").val(entero2);
+        if($("#precio_compra").val() === ""){
+            alertify.alert("Error... Ingrese precio compra", function (){
+                $("#precio_compra").focus();   
+                $("#utilidad_mayorista").val(""); 
+            });
+        }else{
+            if ($("#utilidad_mayorista").val() === "") {
+                $("#precio_mayorista").val("");
+            } else {
+                var precio_mayorista = ((parseFloat($("#precio_compra").val()) * parseFloat($("#utilidad_mayorista").val())) / 100) + parseFloat($("#precio_compra").val());
+                var entero2 = precio_mayorista.toFixed(2);
+                $("#precio_mayorista").val(entero2);
+            }
         }
     });
-//////////////////////////
+    //////////////////////////
 
     //////////////tabla Productos////////////////
     jQuery("#list").jqGrid({
         url: '../xml/datos_productos.php',
         datatype: 'xml',
-        colNames: ['ID', 'CÓDIGO', 'CÓDIGO BARRAS', 'ARTICULO', 'IVA', 'SERIES', 'PRECIO COMPRA', 'UTILIDAD MINORISTA', 'PRECIO MINORISTA', 'UTILIDAD MAYORISTA', 'PRECIO MAYORISTA', 'CATEGORIA', 'MARCA', 'DESCUENTO', 'STOCK', 'MÍNIMO', 'MÁXIMO', 'FECHA COMPRA', 'CARACTERISTICAS', 'OBSERVACIONES', 'ESTADO','INVENTARIABLE'],
+        colNames: ['ID', 'CÓDIGO', 'CÓDIGO BARRAS', 'ARTICULO', 'IVA', 'SERIES', 'PRECIO COMPRA', 'UTILIDAD MINORISTA', 'PRECIO MINORISTA', 'UTILIDAD MAYORISTA', 'PRECIO MAYORISTA', 'CATEGORIA', 'MARCA', 'DESCUENTO', 'STOCK', 'MÍNIMO', 'MÁXIMO', 'FECHA COMPRA', 'CARACTERISTICAS', 'OBSERVACIONES', 'ESTADO','INVENTARIABLE', 'IMAGEN'],
         colModel: [
-            {name: 'cod_productos', index: 'cod_productos', editable: true, align: 'center', width: '60', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'cod_prod', index: 'cod_prod', editable: true, align: 'center', width: '120', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
-            {name: 'cod_barras', index: 'cod_barras', editable: true, align: 'center', width: '120', search: true, frozen: true, formoptions: {elmsuffix: " (*)"}, editrules: {required: true}},
-            {name: 'nombre_art', index: 'nombre_art', editable: true, align: 'center', width: '180', search: true, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'iva', index: 'iva', editable: true, align: 'center', width: '50', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'series', index: 'series', editable: true, align: 'center', width: '50', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'precio_compra', index: 'precio_compra', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'utilidad_minorista', index: 'utilidad_minorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'precio_minorista', index: 'precio_minorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'utilidad_mayorista', index: 'utilidad_mayorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'precio_mayorista', index: 'precio_mayorista', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'categoria', index: 'categoria', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'marca', index: 'marca', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'descuento', index: 'descuento', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'stock', index: 'stock', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'minimo', index: 'minimo', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'maximo', index: 'maximo', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'fecha_creacion', index: 'fecha_creacion', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'modelo', index: 'modelo', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'aplicacion', index: 'aplicacion', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'vendible', index: 'vendible', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}},
-            {name: 'inventario', index: 'inventario', editable: true, align: 'center', width: '120', search: false, frozen: true, editoptions: {readonly: 'readonly'}, formoptions: {elmprefix: ""}}
+        {
+            name: 'cod_productos', 
+            index: 'cod_productos', 
+            editable: true, 
+            align: 'center', 
+            width: '60', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+
+        {
+            name: 'cod_prod', 
+            index: 'cod_prod', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: true, 
+            frozen: true, 
+            formoptions: {
+                elmsuffix: " (*)"
+            }, 
+            editrules: {
+                required: true
+            }
+        },
+
+        {
+            name: 'cod_barras', 
+            index: 'cod_barras', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: true, 
+            frozen: true, 
+            formoptions: {
+                elmsuffix: " (*)"
+            }, 
+            editrules: {
+                required: true
+            }
+        },
+        {
+            name: 'nombre_art', 
+            index: 'nombre_art', 
+            editable: true, 
+            align: 'center', 
+            width: '180', 
+            search: true, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'iva', 
+            index: 'iva', 
+            editable: true, 
+            align: 'center', 
+            width: '50', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'series', 
+            index: 'series', 
+            editable: true, 
+            align: 'center', 
+            width: '50', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'precio_compra', 
+            index: 'precio_compra', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'utilidad_minorista', 
+            index: 'utilidad_minorista', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'precio_minorista', 
+            index: 'precio_minorista', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'utilidad_mayorista', 
+            index: 'utilidad_mayorista', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'precio_mayorista', 
+            index: 'precio_mayorista', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'categoria', 
+            index: 'categoria', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'marca', 
+            index: 'marca', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'descuento', 
+            index: 'descuento', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'stock', 
+            index: 'stock', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'minimo', 
+            index: 'minimo', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'maximo', 
+            index: 'maximo', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'fecha_creacion', 
+            index: 'fecha_creacion', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'modelo', 
+            index: 'modelo', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'aplicacion', 
+            index: 'aplicacion', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'vendible', 
+            index: 'vendible', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'inventario', 
+            index: 'inventario', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        },
+        {
+            name: 'imagen', 
+            index: 'imagen', 
+            editable: true, 
+            align: 'center', 
+            width: '120', 
+            search: false, 
+            frozen: true, 
+            editoptions: {
+                readonly: 'readonly'
+            }, 
+            formoptions: {
+                elmprefix: ""
+            }
+        }
         ],
         rowNum: 10,
         width: 830,
+        height: 190,
         rowList: [10, 20, 30],
         pager: jQuery('#pager'),
         sortname: 'cod_productos',
@@ -514,59 +1069,73 @@ function inicio() {
         caption: 'Lista de Productos',
         editurl: 'procesos/estadio_del.php',
         viewrecords: true,
-         ondblClickRow: function(){
-         var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
-         jQuery('#list').jqGrid('restoreRow', id);   
-         jQuery("#list").jqGrid('GridToForm', id, "#productos_form");
-         $("#btnGuardar").attr("disabled", true);
-         $("#productos").dialog("close");
-         }
+        ondblClickRow: function(){
+            var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
+            jQuery('#list').jqGrid('restoreRow', id);   
+            var ret = jQuery("#list").jqGrid('getRowData', id);
+            $("#foto").attr("src", "../fotos_productos/"+ ret.imagen);
+            jQuery("#list").jqGrid('GridToForm', id, "#productos_form");
+            $("#btnGuardar").attr("disabled", true);
+            $("#productos").dialog("close");      
+        }
     }).jqGrid('navGrid', '#pager',
-            {
-                add: false,
-                edit: false,
-                del: false,
-                refresh: true,
-                search: true,
-                view: false
-            },
     {
-        recreateForm: true, closeAfterEdit: true, checkOnUpdate: true, reloadAfterSubmit: true, closeOnEscape: true
+        add: false,
+        edit: false,
+        del: false,
+        refresh: true,
+        search: true,
+        view: false
     },
     {
-        reloadAfterSubmit: true, closeAfterAdd: true, checkOnUpdate: true, closeOnEscape: true,
+        recreateForm: true, 
+        closeAfterEdit: true, 
+        checkOnUpdate: true, 
+        reloadAfterSubmit: true, 
+        closeOnEscape: true
+    },
+    {
+        reloadAfterSubmit: true, 
+        closeAfterAdd: true, 
+        checkOnUpdate: true, 
+        closeOnEscape: true,
         bottominfo: "Todos los campos son obligatorios son obligatorios"
     },
     {
-        width: 300, closeOnEscape: true
+        width: 300, 
+        closeOnEscape: true
     },
     {
         closeOnEscape: true,
-        multipleSearch: false, overlay: false
+        multipleSearch: false, 
+        overlay: false
     },
     {
     },
-            {
-                closeOnEscape: true
-            }
+    {
+        closeOnEscape: true
+    }
     );
     /////////////////		
-    jQuery("#list").jqGrid('navButtonAdd', '#pager', {caption: "Añadir",
+    jQuery("#list").jqGrid('navButtonAdd', '#pager', {
+        caption: "Añadir",
         onClickButton: function() {
             var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
-            jQuery('#list').jqGrid('restoreRow', id);
-            //var ret = jQuery("#list").jqGrid('getRowData', id);
+
             if (id) {
+                jQuery('#list').jqGrid('restoreRow', id);   
+                var ret = jQuery("#list").jqGrid('getRowData', id);
+                $("#foto").attr("src", "../fotos_productos/"+ ret.imagen);
                 jQuery("#list").jqGrid('GridToForm', id, "#productos_form");
                 $("#btnGuardar").attr("disabled", true);
-                $("#productos").dialog("close");
+                $("#productos").dialog("close"); 
             } else {
                 alertify.alert("Seleccione un fila");
             }
 
         }
     });
-    ///////////////////fin tabla productos////////////   
+///////////////////fin tabla productos////////////   
 }
 
 

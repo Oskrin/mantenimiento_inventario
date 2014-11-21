@@ -114,8 +114,6 @@ function entrar2() {
                             $("#precio").focus();
                             alertify.alert("Ingrese un precio");
                         } else {
-                            // $("#descuento").focus();
-                            //alert("ok");
                             var filas = jQuery("#list").jqGrid("getRowData");
                             var su = 0;
                             var dife = 0;
@@ -328,6 +326,7 @@ function inicio() {
     //////////////////////
     
     //////inmput////////
+    $("#cantidad").validCampoFranz("0123456789");
     $("#codigo").on("keyup", limpiar_campo1);
     $("#producto").on("keyup", limpiar_campo2);
     

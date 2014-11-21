@@ -84,23 +84,23 @@ include '../menus/menu.php';
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
-                                    <h3>SUBIR ARCHIVOS EXCEL</h3>
+                                    <i class="icon-upload"></i>
+                                    <h3>ARCHIVOS EXCEL</h3>
                                 </div> <!-- /widget-header -->
 
                                 <div class="widget-content">
+
+                                    <div class="alert alert-info">
+                                        <h4>Recomendaciones</h4>  
+                                        <br />
+                                        <strong>Poner tipos numéricos y texto en las celdas que corresponde caso contrario saldra error de sintaxis.</strong>
+                                        <br />
+                                        <strong>Tener en cuenta de no repetir los articulos.</strong>
+                                    </div>
+
                                     <div class="tabbable" id="centro">
                                         <form id="formulario_excel" name="formulario_excel" method="post" class="form">
                                             <fieldset>
-                                                <div class="controls">
-                                                    <div class="alert alert-info">
-                                                        <h4>Recomendaciones</h4>  
-                                                        <br />
-                                                        <strong>Poner tipos numéricos y texto en las celdas que corresponde caso contrario saldra error de sintaxis.</strong>
-                                                        <br />
-                                                        <strong>Tener en cuenta de no repetir los articulos.</strong>
-                                                    </div>
-                                                </div>
                                                 <table cellpadding="2" border="0" style="margin-left: 10px;">
                                                     <tr>
                                                         <td><label for="archivo_excel" style="width: 20%">Seleccione: </label></td>   

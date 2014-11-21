@@ -82,6 +82,11 @@ textarea {
     border-radius: 0;
 }
 
+.brand{
+    background: rgba(25,25,25,0.2);
+    border-radius: 3px;
+}
+
 .navbar-fixed-top {
     position: static;
 }
@@ -352,11 +357,10 @@ textarea {
     box-sizing: border-box; 
     text-align: justify;
     margin-left: 10px;
-    background: red;
 }
 
 .columna2_empresa{
-    width: 25%;
+    width: 35%;
     padding: 5px;
     float: left;
     box-sizing: border-box; 
@@ -364,12 +368,13 @@ textarea {
 }
 
 .columna3_empresa{
-    width: 30%;
+    width: 25%;
     padding: 5px;
-    float: left;
+    float: right;
     box-sizing: border-box; 
     text-align: justify;
 }
+
 
 .logo_empresa{
     border: solid 1px;
@@ -410,6 +415,15 @@ textarea {
     float: left;
     box-sizing: border-box; 
     text-align: justify;    
+}
+
+.logo_producto{
+    border: solid 1px;
+    width: 150px;
+    height: 180px;
+    float: left;
+    box-sizing: border-box; 
+    text-align: justify;
 }
 
 .columa_observacion{
@@ -538,9 +552,10 @@ textarea {
         text-align: justify;
     }
 
-    .form-actions{
+    .form-actions {
         width: 100%;  
         box-sizing: border-box;
+        text-align: justify;
     }
 }
 
@@ -985,7 +1000,7 @@ html .fc, .fc table {
     position: relative;
     float: left;
     margin-top: -50%;
-    *margin-top:0;
+    *margin-top: 0;
     *top:-50%
 }
 .fc-state-default .fc-button-effect {
@@ -1483,3 +1498,6 @@ code {
   padding: 0 10px;
   margin: 10px;
 }
+
+
+

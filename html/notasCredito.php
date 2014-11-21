@@ -9,7 +9,6 @@ include '../procesos/base.php';
 conectarse();
 error_reporting(0);
 
-
 /////////////////contador notas credito///////////
 $cont1 = 0;
 $consulta = pg_query("select max(id_devolucion_venta) from devolucion_venta");
@@ -56,25 +55,18 @@ $cont1++;
         <script type="text/javascript" src="../js/jquery.ui.totop.js" ></script>
         <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
         <script type="text/javascript" src="../js/alertify.min.js"></script>
-        
     </head>
 
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
                     <a class="brand" href="">
-                        <?php echo $_SESSION['empresa']; ?>         
-                    </a>			
-                </div> 
-            </div> 
-        </div> 
+                        <h1><?php echo $_SESSION['empresa']; ?></h1>				
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <!-- /Inicio  Menu Principal -->
         <div class="subnavbar">
@@ -102,7 +94,7 @@ $cont1++;
                         <div class="span12">      		
                             <div class="widget ">
                                 <div class="widget-header">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-list-alt"></i>
                                     <h3>NOTAS DE CRÉDITO</h3>
                                 </div> <!-- /widget-header -->
 
@@ -206,6 +198,7 @@ $cont1++;
                                                                 <td><label>Producto:</label></td>   
                                                                 <td><label>Cantidad:</label></td>   
                                                                 <td><label>Precio:</label></td>
+                                                                <td><label>Devolución:</label></td>
                                                             </tr>
 
                                                             <tr>
@@ -213,7 +206,7 @@ $cont1++;
                                                                 <td><input type="text" name="producto" id="producto" class="campo" style="width: 230px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="cantidad" id="cantidad" class="campo" style="width: 60px" maxlength="10"/></td>
                                                                 <td><input type="text" name="precio" id="precio" class="campo" style="width: 60px" maxlength="10"/></td>
-                                                                <td><input type="hidden" name="canti" id="canti" class="campo" style="width: 60px" maxlength="10" value="" /></td>
+                                                                <td><input type="text" name="canti" id="canti" class="campo" style="width: 60px" readonly maxlength="10" value="" /></td>
                                                                 <td><input type="hidden" name="descuento" id="descuento" class="campo" style="width: 60px" maxlength="10"/></td>
                                                                 <td><input type="hidden" name="iva_producto" id="iva_producto" class="campo" style="width: 60px" maxlength="10" value="" /></td>
                                                                 <td><input type="hidden" name="carga_series" id="carga_series" class="campo" style="width: 100px" maxlength="10"/></td>

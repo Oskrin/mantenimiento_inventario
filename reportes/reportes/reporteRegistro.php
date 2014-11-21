@@ -42,7 +42,7 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.=$row[4] . "";
     $codigo.='</h2>             
             <h2 style="width:379px;height:13px;">';
-    $codigo.=$row[34] . " " . $row[35];
+    $codigo.=$row[36] . " " . $row[37];
     $codigo.='</h2>          
         	</div>
          	<div id="medio1">
@@ -52,13 +52,13 @@ while ($row = pg_fetch_row($consulta)) {
         	</div>
         	<div id="medio2">
             <h2>';
-    $codigo.=$row[22] . " ";
+    $codigo.=$row[24] . " ";
     $codigo.='</h2>                                    
             <h2>';
-    $codigo.=$row[45] . " ";
+    $codigo.=$row[48] . " ";
     $codigo.='</h2>                        
             <h2>';
-    $codigo.= $row[18] . " ";
+    $codigo.= $row[19] . " ";
     $codigo.='</h2>                                  
         	</div>
           	<div id="medio3">
@@ -78,7 +78,7 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.=$row[16] . " ";
     $codigo.='</h2>  
             <h2>';
-    $codigo.=$row[26] . " ";
+    $codigo.=$row[40] . " ";
     $codigo.='</h2>                           
         	</div>
          	<div id="acce">
@@ -97,7 +97,6 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;Toda máquina reparada y no retirada en tres meses será subastada</h3>';
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;Favor revisar que en su orden consten todos los componentes que usted deja. No se admitiran reclamos posteriores</h3>';
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;PyS Systems no se responsabiliza por la pérdida de la información</h3>
-                
         	</div>
         	<div>
         	<hr>
@@ -110,16 +109,16 @@ while ($row = pg_fetch_row($consulta)) {
             </div>    
         	<div id="resp">
         	<h2>';
-    $codigo.="Entrege conforme: " . $row[34] . " " . $row[35];
+    $codigo.="Entrege conforme: " . $row[36] . " " . $row[37];
     $codigo.='</h2>                          
         	</div>   
             <div id="resp1">
             <h2>';
-    $codigo.="Recibi conforme: " . $row[22];
+    $codigo.="Recibi conforme: " . $row[24];
     $codigo.='</h2>             
-            </div>         
-			';
+            </div>';
 }
+
 $codigo.='<div id="m"><div id="copia1">
             <img src="../../images/logo_empresa.jpg" />
             <div id="meC">
@@ -134,8 +133,8 @@ $codigo.='<div id="m"><div id="copia1">
         <div id="linea">
             <h3>FORMULARIO DE INGRESO DE EQUIPO</h3>
         </div>';
-$consulta = pg_query("select * from registro_equipo,color,marcas,clientes,usuario,categoria where registro_equipo.id_color=color.id_color and registro_equipo.id_marca=marcas.id_marca and registro_equipo.id_cliente=clientes.id_cliente and registro_equipo.id_usuario=usuario.id_usuario and registro_equipo.id_categoria=categoria.id_categoria and registro_equipo.id_registro='$_GET[id]'");
-while ($row = pg_fetch_row($consulta)) {
+$consulta2 = pg_query("select * from registro_equipo,color,marcas,clientes,usuario,categoria where registro_equipo.id_color=color.id_color and registro_equipo.id_marca=marcas.id_marca and registro_equipo.id_cliente=clientes.id_cliente and registro_equipo.id_usuario=usuario.id_usuario and registro_equipo.id_categoria=categoria.id_categoria and registro_equipo.id_registro='$_GET[id]'");
+while ($row = pg_fetch_row($consulta2)) {
     $codigo.='<div id="cuerpo">      
             <h2>Registro #</h2>                                    
             <h2>Fecha Salida</h2>                        
@@ -153,7 +152,7 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.=$row[4] . "";
     $codigo.='</h2>             
             <h2 style="width:379px;height:13px;">';
-    $codigo.=$row[34] . " " . $row[35];
+    $codigo.=$row[36] . " " . $row[37];
     $codigo.='</h2>                
             </div>
             <div id="medio1C">
@@ -163,13 +162,13 @@ while ($row = pg_fetch_row($consulta)) {
             </div>
             <div id="medio2C">
             <h2>';
-    $codigo.=$row[22] . " ";
+    $codigo.=$row[24] . " ";
     $codigo.='</h2>                                    
             <h2>';
-    $codigo.=$row[45] . " ";
+    $codigo.=$row[48] . " ";
     $codigo.='</h2>                        
             <h2>';
-    $codigo.= $row[18] . " ";
+    $codigo.= $row[19] . " ";
     $codigo.='</h2>                                  
             </div>
             <div id="medio3C">
@@ -189,7 +188,7 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.=$row[16] . " ";
     $codigo.='</h2>  
              <h2>';
-    $codigo.=$row[26] . " ";
+    $codigo.=$row[40] . " ";
     $codigo.='</h2>                             
             </div>
             <div id="acceC">
@@ -208,7 +207,6 @@ while ($row = pg_fetch_row($consulta)) {
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;Toda máquina reparada y no retirada en tres meses será subastada</h3>';
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;Favor revisar que en su orden consten todos los componentes que usted deja. No se admitiran reclamos posteriores</h3>';
     $codigo.='<h3 style="width:800px;margin:0px;padding:0px;font-size:11px;font-weight:normal;">&nbsp;&nbsp;PyS Systems no se responsabiliza por la pérdida de la información</h3>
-
             </div>
             <div>
             <hr>
@@ -221,12 +219,12 @@ while ($row = pg_fetch_row($consulta)) {
             </div>    
             <div id="respC">
             <h2>';
-    $codigo.="Entrege conforme: " . $row[34] . " " . $row[35];
+    $codigo.="Entrege conforme: " . $row[36] . " " . $row[37];
     $codigo.='</h2>                          
             </div>   
             <div id="resp1C">
             <h2>';
-    $codigo.="Recibi conforme: " . $row[22];
+    $codigo.="Recibi conforme: " . $row[24];
     $codigo.='</h2>             
             </div></div></body>';
 }
@@ -237,6 +235,5 @@ $dompdf->load_html($codigo);
 ini_set("memory_limit", "32M");
 $dompdf->set_paper("A4", "portrait");
 $dompdf->render();
-//$dompdf->stream("reporteRegistro.pdf");
 $dompdf->stream('reporteRegistro.pdf', array('Attachment' => 0));
 ?>
