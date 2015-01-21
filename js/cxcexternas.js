@@ -80,19 +80,19 @@ function enter(e) {
 function comprobar() {
     if ($("#id_cliente").val() === "") {
         $("#ruc_ci").focus();
-        alertify.alert("Ingrese un cliente");
+        alertify.error("Ingrese un cliente");
     } else {
         if ($("#num_factura").val() === "") {
             $("#num_factura").focus();
-            alertify.alert("Ingrese Factura Preimpresa");
+            alertify.error("Ingrese Factura Preimpresa");
         }else{
             if ($("#tipo_documento").val() === "") {
                 $("#tipo_documento").focus();
-                alertify.alert("Seleccione tipo Documento");
+                alertify.error("Seleccione tipo Documento");
             }else{
                 if ($("#total").val() === "") {
                     $("#total").focus();
-                    alertify.alert("Ingrese el total de la factura");
+                    alertify.error("Ingrese el total de la factura");
                 }
             }
         }
@@ -103,11 +103,11 @@ function comprobar() {
 function guardar_cuenta() {
     if ($("#id_cliente").val() === "") {
         $("#ruc_ci").focus();
-        alertify.alert("Ingrese un cliente");
+        alertify.error("Ingrese un cliente");
     } else {
         if ($("#num_factura").val() === "") {
             $("#num_factura").focus();
-            alertify.alert("Ingrese Factura Preimpresa");
+            alertify.error("Ingrese Factura Preimpresa");
         }else{
             $.ajax({
                 type: "POST",
@@ -118,15 +118,15 @@ function guardar_cuenta() {
                     if (val == 1) {
                         $("#num_factura").val("");
                         $("#num_factura").focus();
-                        alertify.alert("Error... El número de factura ya existe");
+                        alertify.error("Error... El número de factura ya existe");
                     }else{
                         if ($("#tipo_documento").val() === "") {
                             $("#tipo_documento").focus();
-                            alertify.alert("Seleccione tipo Documento");
+                            alertify.error("Seleccione tipo Documento");
                         }else{
                             if ($("#total").val() === "") {
                                 $("#total").focus();
-                                alertify.alert("Ingrese el total de la factura");
+                                alertify.error("Ingrese el total de la factura");
                             }else{
                                 $.ajax({
                                     type: "POST",
@@ -285,6 +285,10 @@ return true;
 }
 
 function inicio() {
+    
+    alertify.set({ delay: 1000 });
+    
+    $("#ruc_ci").focus();
 
     //////////////para hora///////////
     show();

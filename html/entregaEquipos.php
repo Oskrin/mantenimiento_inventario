@@ -18,7 +18,6 @@ include '../menus/menu.php';
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
@@ -87,125 +86,127 @@ include '../menus/menu.php';
                                     <div class="tabbable" id="entregaP">
                                         <fieldset>
                                             <form class="form-horizontal" id="formEntrega" name="formEntrega" method="post">
-                                                <section class="columna1">
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="txtRegistro">Nro.Registro: </label>
-                                                        <div class="controls" >
-                                                            <input type="text" id="txtRegistro" name="txtRegistro" readonly class="campo" />
-                                                        </div>  
-                                                    </div>   
+                                                <div class="row">
+                                                    <div class="span6">
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="txtRegistro">Nro.Registro: </label>
+                                                            <div class="controls" >
+                                                                <input type="text" id="txtRegistro" name="txtRegistro" readonly class="span4" />
+                                                            </div>  
+                                                        </div>   
 
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="txtIngreso">Fecha Ingreso:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtIngreso" name="txtIngreso" class="campo" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="txtTipoEquipo">Tipo de Equipo:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtTipoEquipo" name="txtTipoEquipo" class="campo" />
-                                                            <input type="hidden" id="txtTipoEquipoId" name="txtTipoEquipoId" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="txtSerie">Nro. Serie:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtSerie" name="txtSerie" class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="txtMarca">Marca:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtMarca" name="txtMarca" class="campo" />
-                                                            <input type="hidden" id="txtMarcaId" name="txtMarcaId" class="campo" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="resp">Técnico Resp:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="resp" name="resp" readonly class="campo"/>  
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <div class="control-group">											
-                                                            <label class="control-label" for="txtObservaciones">Observaciones:</label>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="txtIngreso">Fecha Ingreso:</label>
                                                             <div class="controls">
-                                                                <textarea id="txtObservaciones" name="txtObservaciones" class="campo" style="width: 300px"></textarea>
-                                                            </div>
-                                                        </div> 
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <div class="control-group">											
-                                                            <label class="control-label" for="txtAccesorios">Accesorios:</label>
-                                                            <div class="controls">
-                                                                <textarea id="txtAccesorios" name="txtAccesorios" class="campo" style="width: 300px"></textarea>
+                                                                <input type="text" id="txtIngreso" name="txtIngreso" class="span4" />
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="control-group">
-                                                        <div class="control-group">											
-                                                            <label class="control-label" for="txtReco">Recomendaciones:</label>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="txtTipoEquipo">Tipo de Equipo:</label>
                                                             <div class="controls">
-                                                                <textarea id="txtReco" name="txtReco" class="campo" style="width: 300px"></textarea>
+                                                                <input type="text" id="txtTipoEquipo" name="txtTipoEquipo" class="span4" />
+                                                                <input type="hidden" id="txtTipoEquipoId" name="txtTipoEquipoId" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="txtSerie">Nro. Serie:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtSerie" name="txtSerie" class="span4"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="txtMarca">Marca:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtMarca" name="txtMarca" class="span4" />
+                                                                <input type="hidden" id="txtMarcaId" name="txtMarcaId" class="campo" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="resp">Técnico Resp:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="resp" name="resp" readonly class="span4"/>  
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="txtObservaciones">Observaciones:</label>
+                                                                <div class="controls">
+                                                                    <textarea id="txtObservaciones" name="txtObservaciones" class="span4" ></textarea>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="txtAccesorios">Accesorios:</label>
+                                                                <div class="controls">
+                                                                    <textarea id="txtAccesorios" name="txtAccesorios" class="span4" ></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="txtReco">Recomendaciones:</label>
+                                                                <div class="controls">
+                                                                    <textarea id="txtReco" name="txtReco" class="span4"></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </section>
 
-                                                <section class="columna2">
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="txtCliente">Nombre Cliente: </label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtCliente" name="txtCliente" class="campo" />
-                                                            <input type="hidden" id="txtClienteId" name="txtClienteId" />   
-                                                        </div>			
-                                                    </div>
+                                                    <div class="span6">
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="txtCliente">Nombre Cliente: </label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtCliente" name="txtCliente" class="span4" />
+                                                                <input type="hidden" id="txtClienteId" name="txtClienteId" />   
+                                                            </div>			
+                                                        </div>
 
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="txtSalida">Fecha Salida:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtSalida" name="txtSalida" class="campo"  />  
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="txtSalida">Fecha Salida:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtSalida" name="txtSalida" class="span4"  />  
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="txtModelo">Modelo:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtModelo" name="txtModelo" class="span4" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="txtColor">Color:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtColor" name="txtColor" class="span4" />
+                                                                <input type="hidden" id="txtColorId" name="txtColorId" class="campo"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="nombre_user">Ingresado Por:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="nombre_user" name="nombre_user" readonly class="span4" /> 
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="email">Total Pagar:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="txtTotal" name="txtTotal" readonly class="span4" /> 
+                                                                <input type="hidden" id="txtTotal1" readonly class="span4"/> 
+                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="txtModelo">Modelo:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtModelo" name="txtModelo" class="campo" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="txtColor">Color:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtColor" name="txtColor" class="campo" />
-                                                            <input type="hidden" id="txtColorId" name="txtColorId" class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="nombre_user">Ingresado Por:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="nombre_user" name="nombre_user" readonly class="campo" /> 
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="email">Total Pagar:</label>
-                                                        <div class="controls">
-                                                            <input type="text" id="txtTotal" name="txtTotal" readonly class="campo" /> 
-                                                            <input type="hidden" id="txtTotal1" readonly class="campo"/> 
-                                                        </div>
-                                                    </div>
-                                                </section>
+                                                </div>
                                             </form>
                                         </fieldset>
 

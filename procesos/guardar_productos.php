@@ -13,7 +13,6 @@ while ($row = pg_fetch_row($consulta)) {
 }
 $cont++;
 ////////////////////////////////////////
-
 ///////////////valores imagen//////////
 $extension = explode(".", $_FILES["archivo"]["name"]);
 
@@ -24,30 +23,37 @@ $size = $_FILES["archivo"]["size"];
 $nombre = basename($_FILES["archivo"]["name"], "." . $extension);
 //////////////////////////
 
-$foto = $cont . '.' . $extension;
-move_uploaded_file($_FILES["archivo"]["tmp_name"], "../fotos_productos/" . $foto);
 
 
 
+if ($nombre == "") {
+    $valor = number_format($_POST[precio_compra], 2, '.', '');
+    pg_query("insert into productos values('$cont','$_POST[cod_prod]','$_POST[cod_barras]','$_POST[nombre_art]','$_POST[iva]','$_POST[series]','$valor','$_POST[utilidad_minorista]','$_POST[utilidad_mayorista]','$_POST[precio_minorista]','$_POST[precio_mayorista]','$_POST[categoria]','$_POST[marca]','$_POST[stock]','$_POST[minimo]','$_POST[maximo]','$_POST[fecha_creacion]','$_POST[modelo]','$_POST[aplicacion]','$_POST[descuento]','$_POST[vendible]','$_POST[inventario]','','','')");
+    $data = 1;
+} else {
+    $foto = $cont . '.' . $extension;
+    move_uploaded_file($_FILES["archivo"]["tmp_name"], "../fotos_productos/" . $foto);
+    
 /////////////////guardar productos///////
-$valor = number_format($_POST[precio_compra], 2, '.', '');
-pg_query("insert into productos values('$cont','$_POST[cod_prod]','$_POST[cod_barras]','$_POST[nombre_art]','$_POST[iva]','$_POST[series]','$valor','$_POST[utilidad_minorista]','$_POST[utilidad_mayorista]','$_POST[precio_minorista]','$_POST[precio_mayorista]','$_POST[categoria]','$_POST[marca]','$_POST[stock]','$_POST[minimo]','$_POST[maximo]','$_POST[fecha_creacion]','$_POST[modelo]','$_POST[aplicacion]','$_POST[descuento]','$_POST[vendible]','$_POST[inventario]','','','$foto')");
+    $valor = number_format($_POST[precio_compra], 2, '.', '');
+    pg_query("insert into productos values('$cont','$_POST[cod_prod]','$_POST[cod_barras]','$_POST[nombre_art]','$_POST[iva]','$_POST[series]','$valor','$_POST[utilidad_minorista]','$_POST[utilidad_mayorista]','$_POST[precio_minorista]','$_POST[precio_mayorista]','$_POST[categoria]','$_POST[marca]','$_POST[stock]','$_POST[minimo]','$_POST[maximo]','$_POST[fecha_creacion]','$_POST[modelo]','$_POST[aplicacion]','$_POST[descuento]','$_POST[vendible]','$_POST[inventario]','','','$foto')");
+    $data = 1;
 ////////////////////////////////////////
-//////////////////inicializar kardex////////
-//
-/////////////contador kardex//////////
-$cont2 = 0;
-$consulta2 = pg_query("select max(id_kardex) from kardex_valorizado");
-while ($row = pg_fetch_row($consulta2)) {
-    $cont2 = $row[0];
 }
-$cont2++;
 
-$saldo = $_POST[stock] * $_POST[precio_compra];
-$format_numero = number_format($saldo, 2, '.', '');
-pg_query("insert into kardex_valorizado values('$cont2','$cont','$_POST[fecha_creacion]','Inventario inicial','','','$_POST[stock]','$valor','0.00','','','$format_numero','Activo')");
-////////////////////////////////////////
+///////////////contador kardex//////////
+//$cont2 = 0;
+//$consulta2 = pg_query("select max(id_kardex) from kardex_valorizado");
+//while ($row = pg_fetch_row($consulta2)) {
+//    $cont2 = $row[0];
+//}
+//$cont2++;
+//
+//$saldo = $_POST[stock] * $_POST[precio_compra];
+//$format_numero = number_format($saldo, 2, '.', '');
+//pg_query("insert into kardex_valorizado values('$cont2','$cont','$_POST[fecha_creacion]','Inventario inicial','','','$_POST[stock]','$valor','0.00','','','$format_numero','Activo')");
+//////////////////////////////////////////
 
-$data = 1;
+
 echo $data;
 ?>

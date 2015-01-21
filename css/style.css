@@ -1,17 +1,18 @@
-body {
+body {    
     background: #f9f6f1;
     font: 13px/1.7em 'Open Sans';
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif; 
 }
 
 p { 
-    font: 13px/1.7em 'Open Sans'; 	
+    font-family: Helvetica,Futura,Arial,Verdana,sans-serif;
 }
 
 input,
 button,
 select,
 textarea {
-    font-family: 'Open Sans';
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
 }
 
 .custom-combobox {
@@ -307,7 +308,6 @@ textarea {
 
 .footer-inner {
     padding: 15px 0;
-
     font-size: 12px;
     background: #111;
     color: #999;
@@ -349,32 +349,6 @@ textarea {
     box-sizing: border-box; 
     text-align: justify;
 }
-
-.columna1_empresa{
-    width: 35%;
-    padding: 2px;
-    float: left;
-    box-sizing: border-box; 
-    text-align: justify;
-    margin-left: 10px;
-}
-
-.columna2_empresa{
-    width: 35%;
-    padding: 5px;
-    float: left;
-    box-sizing: border-box; 
-    text-align: justify;
-}
-
-.columna3_empresa{
-    width: 25%;
-    padding: 5px;
-    float: right;
-    box-sizing: border-box; 
-    text-align: justify;
-}
-
 
 .logo_empresa{
     border: solid 1px;
@@ -419,7 +393,7 @@ textarea {
 
 .logo_producto{
     border: solid 1px;
-    width: 150px;
+    width: 200px;
     height: 180px;
     float: left;
     box-sizing: border-box; 
@@ -443,13 +417,6 @@ textarea {
 }
 
 @media screen and (max-width: 1199px){
-    .columna3_empresa{
-        width: 100%;
-        padding: 5px;
-        float: left;
-        box-sizing: border-box;
-        text-align: justify;
-    }
 
     .columna_1{
         width: 40%;
@@ -529,22 +496,6 @@ textarea {
     }
 
     .columna2{
-        width: 100%;
-        padding: 5px;
-        float: left;
-        box-sizing: border-box;
-        text-align: justify;
-    }
-
-    .columna1_empresa{
-        width: 100%;
-        padding: 5px;
-        float: left;
-        box-sizing: border-box;
-        text-align: justify;
-    }
-
-    .columna2_empresa{
         width: 100%;
         padding: 5px;
         float: left;
@@ -1484,19 +1435,19 @@ table.fc-border-separate {
 
 /*validaciones*/
 .invalid {
-  color: red;
+    color: red;
 }
 
 .color_blue {
-  color: blue;
+    color: blue;
 }
 
 code {
-  white-space: pre-wrap;
-  background-color: #eee;
-  display: block;
-  padding: 0 10px;
-  margin: 10px;
+    white-space: pre-wrap;
+    background-color: #eee;
+    display: block;
+    padding: 0 10px;
+    margin: 10px;
 }
 
 

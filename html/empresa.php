@@ -18,7 +18,6 @@ include '../menus/menu.php';
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/alertify.core.css" />
         <link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
@@ -29,7 +28,6 @@ include '../menus/menu.php';
         <script type="text/javascript"src="../js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
         <script type="text/javascript" src="../js/jquery-loader.js"></script>
-        <!--<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>-->
         <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/grid.locale-es.js"></script>
         <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
@@ -86,111 +84,131 @@ include '../menus/menu.php';
 
                                 <div class="widget-content">
                                     <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#formcontrols" data-toggle="tab">Información Empresa</a>
+                                            </li>
+                                            <li ><a href="#jscontrols" data-toggle="tab">Imagen</a></li>
+                                        </ul>
+
+
+
                                         <fieldset>
                                             <form class="form-horizontal" id="empresa_form" name="empresa_form" method="post"  enctype="multipart/form-data">
-                                                <section class="columna1_empresa">
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="nombre_empresa">Nombre empresa: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="nombre_empresa"  id="nombre_empresa" placeholder="Empresa" required class="campo">
-                                                        </div>  
-                                                    </div> 
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="formcontrols">
+                                                        <div class="row">
+                                                            <div class="span6">
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="nombre_empresa">Nombre empresa: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="nombre_empresa"  id="nombre_empresa" placeholder="Empresa" required class="span4">
+                                                                    </div>  
+                                                                </div>  
 
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="descripcion_empresa">Descripción: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="descripcion_empresa"  id="descripcion_empresa" placeholder="Descripción empresa" required class="campo">
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="descripcion_empresa">Descripción: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="descripcion_empresa"  id="descripcion_empresa" placeholder="Descripción empresa" required class="span4">
+                                                                    </div>
+                                                                </div> 
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="direccion_empresa">Dirección: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="direccion_empresa"  id="direccion_empresa" placeholder="Dirección empresa" required class="span4">
+                                                                    </div>	
+                                                                </div> 
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="celular_empresa">Celular: </label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="celular_empresa"  id="celular_empresa" placeholder="Telefóno empresa" maxlength="10" required class="span4">
+                                                                    </div>	
+                                                                </div> 
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="ciudad_empresa">Ciudad: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="ciudad_empresa"  id="ciudad_empresa" placeholder="Ciudad empresa" required class="span4">
+                                                                    </div>	
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="correo_empresa">E-mail: </label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="correo_empresa"  id="correo_empresa" placeholder="Correo empresa" required class="span4">
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+
+                                                            <div class="span6">
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="ruc_empresa">Ruc empresa: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="ruc_empresa"  id="ruc_empresa" placeholder=" Ruc empresa" required class="span4">
+                                                                        <input type="hidden" name="id_empresa"  id="id_empresa" readonly class="campo">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="propietario_empresa">Propietario: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="propietario_empresa"  id="propietario_empresa" placeholder="Propietario empresa" required class="span4">
+                                                                    </div>	
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="telefono_empresa">Teléfono: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="telefono_empresa"  id="telefono_empresa" placeholder="Telefóno empresa" maxlength="10" required class="span4">
+                                                                    </div>	
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="pais_empresa">País: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="pais_empresa"  id="pais_empresa" placeholder="País empresa" required class="span4">
+                                                                    </div>	
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="fax_empresa">Fax: </label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="fax_empresa"  id="fax_empresa" placeholder="Fax empresa" required class="span4">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="pagina_empresa">Página Web: </label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="pagina_empresa"  id="pagina_empresa" placeholder="Página web empresa" required class="span4">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div> 
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="direccion_empresa">Dirección: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="direccion_empresa"  id="direccion_empresa" placeholder="Dirección empresa" required class="campo">
-                                                        </div>	
-                                                    </div> 
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="celular_empresa">Celular: </label>
-                                                        <div class="controls">
-                                                            <input type="text" name="celular_empresa"  id="celular_empresa" placeholder="Telefóno empresa" maxlength="10" required class="campo">
-                                                        </div>	
-                                                    </div> 
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="ciudad_empresa">Ciudad: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="ciudad_empresa"  id="ciudad_empresa" placeholder="Ciudad empresa" required class="campo">
-                                                        </div>	
                                                     </div>
 
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="correo_empresa">E-mail: </label>
-                                                        <div class="controls">
-                                                            <input type="text" name="correo_empresa"  id="correo_empresa" placeholder="Correo empresa" required class="campo">
-                                                        </div>
-                                                    </div> 
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="correo_empresa">Imagen: </label>
-                                                        <div class="controls">
-                                                            <input type="file" name="archivo" id="archivo" onchange='Test.UpdatePreview(this)' accept="image/*" />
-                                                        </div>	
-                                                    </div> 
-                                                </section>
-
-                                                <section class="columna1_empresa">
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="ruc_empresa">Ruc empresa: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="ruc_empresa"  id="ruc_empresa" placeholder=" Ruc empresa" required class="campo">
-                                                            <input type="hidden" name="id_empresa"  id="id_empresa" readonly class="campo">
+                                                    <div class="tab-pane" id="jscontrols">
+                                                        <div class="row">
+                                                            <div class="span6">
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="archivo">Imagen: </label>
+                                                                    <div class="controls">
+                                                                        <input type="file" name="archivo" id="archivo" onchange='Test.UpdatePreview(this)' accept="image/*" />
+                                                                    </div>	
+                                                                </div> 
+                                                            </div>
+                                                            <div class="span6">
+                                                                <div class="control-group" >
+                                                                    <div id="logo" class="logo_empresa" title="LOGO">
+                                                                        <img id="foto" name="foto" style="width: 100%; height: 100%"  />
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="propietario_empresa">Propietario: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="propietario_empresa"  id="propietario_empresa" placeholder="Propietario empresa" required class="campo">
-                                                        </div>	
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="telefono_empresa">Telefóno: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="telefono_empresa"  id="telefono_empresa" placeholder="Telefóno empresa" maxlength="10" required class="campo">
-                                                        </div>	
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="pais_empresa">País: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="pais_empresa"  id="pais_empresa" placeholder="País empresa" required class="campo">
-                                                        </div>	
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="fax_empresa">Fax: </label>
-                                                        <div class="controls">
-                                                            <input type="text" name="fax_empresa"  id="fax_empresa" placeholder="Fax empresa" required class="campo">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="pagina_empresa">Página Web: </label>
-                                                        <div class="controls">
-                                                            <input type="text" name="pagina_empresa"  id="pagina_empresa" placeholder="Página web empresa" required class="campo">
-                                                        </div>
-                                                    </div>
-                                                </section>
-
-                                                <section class="columna3_empresa">
-                                                    <div class="control-group" >
-                                                        <div id="logo" class="logo_empresa" title="LOGO">
-                                                            <img id="foto" name="foto" style="width: 100%; height: 100%"  />
-                                                        </div> 
-                                                    </div>
-                                                </section>
+                                                </div>
                                             </form>
                                         </fieldset>
 

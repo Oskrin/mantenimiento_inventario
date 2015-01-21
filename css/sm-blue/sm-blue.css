@@ -1,14 +1,3 @@
-/* Import "PT Sans Narrow" font from Google fonts */
-@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
-
-
-/*
----------------------------------------------------------------
-  Note that styles you apply to the main menu items are inherited by the sub menus items too.
-  If you'd like to avoid this, you could use child selectors (not supported by IE6) - for example:
-  .sm-blue > li > a { ... } instead of .sm-blue a { ... }
----------------------------------------------------------------*/
-
 
 /* Menu box
 ===================*/

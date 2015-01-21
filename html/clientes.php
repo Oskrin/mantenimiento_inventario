@@ -18,7 +18,6 @@ include '../menus/menu.php';
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/link_top.css" rel="stylesheet" />
@@ -27,9 +26,10 @@ include '../menus/menu.php';
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
         <link href="../css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
 
+        <script type="text/javascript"src="../js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
         <script type="text/javascript" src="../js/jquery-loader.js"></script>
-        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <!--<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>-->
         <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/grid.locale-es.js"></script>
         <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
@@ -87,109 +87,105 @@ include '../menus/menu.php';
                                     <div class="tabbable">
                                         <fieldset>
                                             <form class="form-horizontal" id="clientes_form" name="clientes_form" method="post">
-                                                <section class="columna1">
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="tipo_docu">Tipo Documento: <font color="red">*</font></label>
-                                                        <div class="controls" >
-                                                            <select name="tipo_docu" id="tipo_docu" required class="campo">
-                                                                <option value="">......Seleccione......</option>
-                                                                <option value="Cedula">Cedula</option>
-                                                                <option value="Ruc">Ruc</option>
-                                                                <option value="Pasaporte">Pasaporte</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="nombres_cli">Nombres Completos: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="nombres_cli"  id="nombres_cli" placeholder="Nombres y Apellidos" required class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="nro_telefono">Teléfono:</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="nro_telefono" id="nro_telefono" placeholder="062-999-999" maxlength="10" class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="pais_cli">País: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="pais_cli" id="pais_cli" placeholder="Ingrese un pais" required  class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="direccion_cli">Dirección: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="direccion_cli" id="direccion_cli" placeholder="Direccion cliente" required  class="campo"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="cupo_credito">Cupo de Crédito: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <div class="input-prepend input-append">
-                                                                <span class="add-on">$</span>
-                                                                <input type="text" name="cupo_credito" id="cupo_credito" class="campo" style="width: 165px" />
+                                                <div class="row">
+                                                    <div class="span6">
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="tipo_docu">Tipo Documento: </label>
+                                                            <div class="controls" >
+                                                                <select name="tipo_docu" id="tipo_docu" required class="span4">
+                                                                    <option value="Cedula">Cedula</option>
+                                                                    <option value="Ruc">Ruc</option>
+                                                                    <option value="Pasaporte">Pasaporte</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </section>
 
-                                                <section class="columna2">
-                                                    <div class="control-group">											
-                                                        <label class="control-label" for="ruc_ci">RUC/CI: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="ruc_ci"  id="ruc_ci" placeholder="10000000000" required class="campo">
-                                                            <input type="hidden" name="id_cliente"  id="id_cliente" readonly class="campo">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="tipo_cli">Tipo Cliente: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <select name="tipo_cli" id="tipo_cli" required class="campo">
-                                                                <option value="">......Seleccione......</option>
-                                                                <option value="natural">Natural</option>
-                                                                <option value="juridico">Juridico</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="nro_celular">Celular:</label>
-                                                        <div class="controls">
-                                                            <input type="tel" name="nro_celular" id="nro_celular" maxlength="10" placeholder="09-9999-999" class="campo" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="ciudad_cli">Ciudad: <font color="red">*</font></label>
-                                                        <div class="controls">
-                                                            <input type="text" name="ciudad_cli" id="ciudad_cli" required class="campo" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="email">E-mail: </label>
-                                                        <div class="controls">
-                                                            <div class="input-prepend input-append">
-                                                                <span class="add-on">@</span>
-                                                                <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="campo" style="width: 165px"/>
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="nombres_cli">Nombres Completos: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="nombres_cli"  id="nombres_cli" placeholder="Nombres y Apellidos" required class="span4"/>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="notas_cli">Notas: </label>
-                                                        <div class="controls">
-                                                            <textarea name="notas_cli" id="notas_cli" rows="3" class="campo"></textarea>
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="nro_telefono">Teléfono:</label>
+                                                            <div class="controls">
+                                                                <input type="text" name="nro_telefono" id="nro_telefono" placeholder="062-999-999" maxlength="10" class="span4"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </section>
+
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="pais_cli">País: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="pais_cli" id="pais_cli" placeholder="Ingrese un pais" required  class="span4"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="direccion_cli">Dirección: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="direccion_cli" id="direccion_cli" placeholder="Direccion cliente" required  class="span4"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="cupo_credito">Cupo de Crédito: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="cupo_credito" id="cupo_credito" class="span4" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div> <!-- /span6 -->   
+
+                                                    <div class="span6">
+                                                        <div class="control-group">											
+                                                            <label class="control-label" for="ruc_ci">RUC/CI: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="ruc_ci"  id="ruc_ci" placeholder="Ingrese Identificación" required pattern="[0-9]{10,10}" maxlength="10" class="span4">
+                                                                <input type="hidden" name="id_cliente"  id="id_cliente" readonly class="campo">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="tipo_cli">Tipo Cliente: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <select name="tipo_cli" id="tipo_cli" required class="span4">
+                                                                    <option value="">......Seleccione......</option>
+                                                                    <option value="natural">Natural</option>
+                                                                    <option value="juridico">Juridico</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="nro_celular">Celular:</label>
+                                                            <div class="controls">
+                                                                <input type="tel" name="nro_celular" id="nro_celular" maxlength="10" placeholder="09-9999-999" class="span4" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="ciudad_cli">Ciudad: <font color="red">*</font></label>
+                                                            <div class="controls">
+                                                                <input type="text" name="ciudad_cli" id="ciudad_cli" required class="span4" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="email">E-mail: </label>
+                                                            <div class="controls">
+                                                                <input type="text" name="email" id="email" placeholder="xxxx@example.com" class="span4" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="notas_cli">Notas: </label>
+                                                            <div class="controls">
+                                                                <textarea name="notas_cli" id="notas_cli" rows="3" class="span4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- /span6 --> 
+                                                </div>
                                             </form>
                                         </fieldset>
 

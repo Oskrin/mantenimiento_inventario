@@ -937,7 +937,6 @@ legend+.control-group {
 	clear: both;
 }
 
-
 .form-horizontal .control-label {
 	float: left;
 	width: 140px;
@@ -945,100 +944,12 @@ legend+.control-group {
 	text-align: right;
 }
 
-.form-horizontal .control-label2 {
-	/*float: left;*/
-	width: 140px;
-	margin-top: -25px;
-	text-align: right;
-        margin-left: 370px;
-}
-
-.form-horizontal .control-label3 {
-	width: 140px;
-	padding-top: 5px;
-	text-align: right;
-        margin-left: -70px;
-}
-
-.form-horizontal .control-label4 {
-	width: 140px;
-	margin-top: -25px;
-	text-align: right;
-        margin-left: 210px;
-}
-
-
 .form-horizontal .controls {
-margin-left: 160px;
+margin-left: 150px;
 *display:inline-block;
 *margin-left:0;
 *padding-left:20px;
 }
-
-.form-horizontal .controls2 {
-margin-left: 530px;
-margin-top: -28px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls3 {
-margin-left: 350px;
-margin-top: -33px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls4 {
-margin-left: 740px;
-margin-top: -33px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls5 {
-margin-left: 80px;
-margin-top: -25px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls6 {
-margin-left: 200px;
-margin-top: -27px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls7 {
-margin-left: 360px;
-margin-top: -27px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls8 {
-margin-left: 540px;
-margin-top: -27px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
-.form-horizontal .controls9 {
-margin-left: 620px;
-margin-top: -27px;
-*display:inline-block;
-*margin-left:0;
-*padding-left:20px;
-}
-
 
 .form-horizontal .help-block {
 	margin-top: 9px;

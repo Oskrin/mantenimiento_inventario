@@ -30,8 +30,7 @@ var dialogo =
     modal: true
 };
 
-function abrirDialogo(e)
-{
+function abrirDialogo(e) {
     $("#empresas").dialog("open");
 }
 
@@ -83,39 +82,39 @@ function guardar_empresa() {
    
     if ($("#nombre_empresa").val() === "") {
         $("#nombre_empresa").focus();
-        alertify.alert("Ingrese nombre de la empresa");
+        alertify.error("Ingrese nombre de la empresa");
     } else {
         if ($("#ruc_empresa").val() === "") {
             $("#ruc_empresa").focus();
-            alertify.alert("Ingrese ruc de la empresa");
+            alertify.error("Ingrese ruc de la empresa");
         }else{
             if ( iden.length < 13) {
                 $("#ruc_ci").focus();
-                alertify.alert("Error.. Minimo 13 digitos ");
+                alertify.error("Error.. Minimo 13 digitos ");
             } else {
                 if ($("#descripcion_empresa").val() === "") {
                     $("#descripcion_empresa").focus();
-                    alertify.alert("Ingrese una descripción");
+                    alertify.error("Ingrese una descripción");
                 }else{
                     if ($("#propietario_empresa").val() === "") {
                         $("#propietario_empresa").focus();
-                        alertify.alert("Ingrese el propietario");
+                        alertify.error("Ingrese el propietario");
                     }else{
                         if ($("#direccion_empresa").val() === "") {
                             $("#direccion_empresa").focus();
-                            alertify.alert("Ingrese dirección de la empresa");
+                            alertify.error("Ingrese dirección de la empresa");
                         }else{
                             if ($("#telefono_empresa").val() === "") {
                                 $("#telefono_empresa").focus();
-                                alertify.alert("Ingrese telefóno de la empresa");
+                                alertify.error("Ingrese telefóno de la empresa");
                             }else{ 
                                 if ($("#pais_empresa").val() === "") {
                                     $("#pais_empresa").focus();
-                                    alertify.alert("Ingrese el país");
+                                    alertify.error("Ingrese el país");
                                 }else{
                                     if ($("#ciudad_empresa").val() === "") {
                                         $("#ciudad_empresa").focus();
-                                        alertify.alert("Ingrese la ciudad");
+                                        alertify.error("Ingrese la ciudad");
                                     }else{
                                         $("#empresa_form").submit(function(e) {
                                             var formObj = $(this);
@@ -134,10 +133,11 @@ function guardar_empresa() {
                                                     processData:false,
                                                     success: function(data, textStatus, jqXHR) {
                                                         var res=data;
-                                                        if(res == 1){
-                                                            alertify.alert("Datos Agredados Correctamente",function(){
+                                                        if (res == 1) {
+                                                            alertify.success('Datos Agregados Correctamente');						    		
+                                                            setTimeout(function() {
                                                                 location.reload();
-                                                            });
+                                                            }, 1000);
                                                         } else{
                                                             alertify.alert("Error..... Datos no Agregados");
                                                         }
@@ -178,43 +178,43 @@ function modificar_empresa(){
     var iden = $("#ruc_empresa").val();
  
     if ($("#id_empresa").val() === "") {
-        alertify.alert("Indique la empresa");
+        alertify.error("Indique la empresa");
     }else{
         if ($("#nombre_empresa").val() === "") {
             $("#nombre_empresa").focus();
-            alertify.alert("Ingrese nombre de la empresa");
+            alertify.error("Ingrese nombre de la empresa");
         } else {
             if ($("#ruc_empresa").val() === "") {
                 $("#ruc_empresa").focus();
-                alertify.alert("Ingrese ruc de la empresa");
+                alertify.error("Ingrese ruc de la empresa");
             }else{
                 if ( iden.length < 13) {
                     $("#ruc_ci").focus();
-                    alertify.alert("Error.. Minimo 13 digitos ");
+                    alertify.error("Error.. Minimo 13 digitos ");
                 } else {
                     if ($("#descripcion_empresa").val() === "") {
                         $("#descripcion_empresa").focus();
-                        alertify.alert("Ingrese una descripción");
+                        alertify.error("Ingrese una descripción");
                     }else{
                         if ($("#propietario_empresa").val() === "") {
                             $("#propietario_empresa").focus();
-                            alertify.alert("Ingrese el propietario");
+                            alertify.error("Ingrese el propietario");
                         }else{
                             if ($("#direccion_empresa").val() === "") {
                                 $("#direccion_empresa").focus();
-                                alertify.alert("Ingrese dirección de la empresa");
+                                alertify.error("Ingrese dirección de la empresa");
                             }else{
                                 if ($("#telefono_empresa").val() === "") {
                                     $("#telefono_empresa").focus();
-                                    alertify.alert("Ingrese telefóno de la empresa");
+                                    alertify.error("Ingrese telefóno de la empresa");
                                 }else{ 
                                     if ($("#pais_empresa").val() === "") {
                                         $("#pais_empresa").focus();
-                                        alertify.alert("Ingrese el país");
+                                        alertify.error("Ingrese el país");
                                     }else{
                                         if ($("#telefono_empresa").val() === "") {
                                             $("#telefono_empresa").focus();
-                                            alertify.alert("Ingrese la ciudad");
+                                            alertify.error("Ingrese la ciudad");
                                         }else{
                                             $("#empresa_form").submit(function(e) {
                                             var formObj = $(this);
@@ -232,13 +232,14 @@ function modificar_empresa(){
                                                     cache: false,
                                                     processData:false,
                                                     success: function(data, textStatus, jqXHR) {
-                                                        var res=data;
-                                                        if(res == 1){
-                                                            alertify.alert("Datos Modificados Correctamente",function(){
+                                                        var res = data;
+                                                        if (res == 1) {
+                                                            alertify.success('Datos Modificados Correctamente');						    		
+                                                            setTimeout(function() {
                                                                 location.reload();
-                                                            });
+                                                            }, 1000);
                                                         } else{
-                                                            alertify.alert("Error..... Datos no Modificados");
+                                                            alertify.error("Error..... Datos no Modificados");
                                                         }
                                                     },
                                                     error: function(jqXHR, textStatus, errorThrown) 
@@ -274,7 +275,7 @@ function modificar_empresa(){
 } 
 
 function inicio() {
-    
+    alertify.set({ delay: 1000 });
     //////////////////para cargar mpresa/////////////
     function getDoc(frame) {
         var doc = null;     
@@ -297,201 +298,8 @@ function inicio() {
         return doc;
     }
     //////////////////////////
-    
-    ///////////////enviar datos////////////////
-    //    $("#btnGuardar").click(function (){
-    //        var iden = $("#ruc_empresa").val();
-    //        if ($("#nombre_empresa").val() === "") {
-    //            $("#nombre_empresa").focus();
-    //            alert("Ingrese nombre de la empresa");
-    //        } else {
-    //            if ($("#ruc_empresa").val() === "") {
-    //                $("#ruc_empresa").focus();
-    //                alert("Ingrese ruc de la empresa");
-    //            }else{
-    //                if ( iden.length < 13) {
-    //                    $("#ruc_ci").focus();
-    //                    alert("Error.. Minimo 13 digitos ");
-    //                } else {
-    //                    if ($("#descripcion_empresa").val() === "") {
-    //                        $("#descripcion_empresa").focus();
-    //                        alert("Ingrese una descripción");
-    //                    }else{
-    //                        if ($("#propietario_empresa").val() === "") {
-    //                            $("#propietario_empresa").focus();
-    //                            alert("Ingrese el propietario");
-    //                        }else{
-    //                            if ($("#direccion_empresa").val() === "") {
-    //                                $("#direccion_empresa").focus();
-    //                                alert("Ingrese dirección de la empresa");
-    //                            }else{
-    //                                if ($("#telefono_empresa").val() === "") {
-    //                                    $("#telefono_empresa").focus();
-    //                                    alert("Ingrese telefóno de la empresa");
-    //                                }else{ 
-    //                                    $("#empresa_form").submit(function(e)
-    //                                    {
-    //                                        var formObj = $(this);
-    //                                        var formURL = formObj.attr("action");
-    //                                        if(window.FormData !== undefined)  
-    //                                        {	
-    //                                            var formData = new FormData(this);   
-    //                                            formURL=formURL;        	
-    //                                            $.ajax({
-    //                                                url: formURL,
-    //                                                type: "POST",
-    //                                                data:  formData,
-    //                                                mimeType:"multipart/form-data",
-    //                                                contentType: false,
-    //                                                cache: false,
-    //                                                processData:false,
-    //                                                success: function(data, textStatus, jqXHR)
-    //                                                {
-    //                                                    var res=data;
-    //                                                    if(res == 1){
-    //                                                        alert("Empresa guardada correctamente");
-    //                                                        location.reload();
-    //                                                    }
-    //                                                    else{
-    //                                                        alert("Error..... registro no guardado");
-    //                                                    }
-    //                                                },
-    //                                                error: function(jqXHR, textStatus, errorThrown) 
-    //                                                {
-    //                                                } 	        
-    //                                            });
-    //                                            e.preventDefault();
-    //                                        }
-    //                                        else  //for olden browsers
-    //                                        {
-    //                                            //generate a random id
-    //                                            var  iframeId = "unique" + (new Date().getTime());
-    //                                            //create an empty iframe
-    //                                            var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
-    //                                            //hide it
-    //                                            iframe.hide();
-    //                                            //set form target to iframe
-    //                                            formObj.attr("target",iframeId);
-    //                                            //Add iframe to body
-    //                                            iframe.appendTo("body");
-    //                                            iframe.load(function(e)
-    //                                            {
-    //                                                var doc = getDoc(iframe[0]);
-    //                                                var docRoot = doc.body ? doc.body : doc.documentElement;
-    //                                                var data = docRoot.innerHTML;
-    //                                            //data return from server.			
-    //                                            });
-    //                                        }
-    //                                    });
-    //                                    $("#empresa_form").submit();
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-    //                } 
-    //            }
-    //        }
-    //    });
-    /////////////////////////////////////////
-    
-    
-    ///////////////modificar empresa//////////////////////////
-    //    $("#btnModificar").click(function (){
-    //        var iden = $("#ruc_empresa").val();
-    //        if ($("#nombre_empresa").val() === "") {
-    //            $("#nombre_empresa").focus();
-    //            alert("Ingrese nombre de la empresa");
-    //        } else {
-    //            if ($("#ruc_empresa").val() === "") {
-    //                $("#ruc_empresa").focus();
-    //                alert("Ingrese ruc de la empresa");
-    //            }else{
-    //                if ( iden.length < 13) {
-    //                    $("#ruc_ci").focus();
-    //                    alert("Error.. Minimo 13 digitos ");
-    //                } else {
-    //                    if ($("#descripcion_empresa").val() === "") {
-    //                        $("#descripcion_empresa").focus();
-    //                        alert("Ingrese una descripción");
-    //                    }else{
-    //                        if ($("#propietario_empresa").val() === "") {
-    //                            $("#propietario_empresa").focus();
-    //                            alert("Ingrese el propietario");
-    //                        }else{
-    //                            if ($("#direccion_empresa").val() === "") {
-    //                                $("#direccion_empresa").focus();
-    //                                alert("Ingrese dirección de la empresa");
-    //                            }else{
-    //                                if ($("#telefono_empresa").val() === "") {
-    //                                    $("#telefono_empresa").focus();
-    //                                    alert("Ingrese telefóno de la empresa");
-    //                                }else{ 
-    //                                    $("#empresa_form").submit(function(e)
-    //                                    {
-    //                                        var formObj = $(this);
-    //                                        var formURL = formObj.attr("action");
-    //                                        if(window.FormData !== undefined)  
-    //                                        {	
-    //                                            var formData = new FormData(this);   
-    //                                            formURL=formURL; 
-    //                                            
-    //                                            $.ajax({
-    //                                                url: "../procesos/modificar_empresa.php",
-    //                                                type: "POST",
-    //                                                data:  formData,
-    //                                                mimeType:"multipart/form-data",
-    //                                                contentType: false,
-    //                                                cache: false,
-    //                                                processData:false,
-    //                                                success: function(data, textStatus, jqXHR)
-    //                                                {
-    //                                                    var res=data;
-    //                                                    if(res == 1){
-    //                                                        alert("Empresa modificada correctamente");
-    //                                                        location.reload();
-    //                                                    }
-    //                                                    else{
-    //                                                        alert("Error..... registro no modificado");
-    //                                                    }
-    //                                                },
-    //                                                error: function(jqXHR, textStatus, errorThrown) 
-    //                                                {
-    //                                                } 	        
-    //                                            });
-    //                                            e.preventDefault();
-    //                                        }
-    //                                        else  //for olden browsers
-    //                                        {
-    //                                            //generate a random id
-    //                                            var  iframeId = "unique" + (new Date().getTime());
-    //                                            //create an empty iframe
-    //                                            var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
-    //                                            //hide it
-    //                                            iframe.hide();
-    //                                            //set form target to iframe
-    //                                            formObj.attr("target",iframeId);
-    //                                            //Add iframe to body
-    //                                            iframe.appendTo("body");
-    //                                            iframe.load(function(e)
-    //                                            {
-    //                                                var doc = getDoc(iframe[0]);
-    //                                                var docRoot = doc.body ? doc.body : doc.documentElement;
-    //                                                var data = docRoot.innerHTML;
-    //                                            //data return from server.			
-    //                                            });
-    //                                        }
-    //                                    });
-    //                                    $("#empresa_form").submit();
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-    //                } 
-    //            }
-    //        }
-    //    });
-    
 
+    $("#nombre_empresa").focus();
     $("#ruc_empresa").validCampoFranz("0123456789");
     $("#telefono_empresa").validCampoFranz("0123456789");
     $("#celular_empresa").validCampoFranz("0123456789");
@@ -533,13 +341,13 @@ function inicio() {
                 if (parseInt(ce.charAt(9)) === residuo) {
                 }
                 else {
-                    alert("Error.... Ruc Incorrecto");
+                    alertify.error("Error.... Ruc Incorrecto");
                     $("#ruc_empresa").val("");
                 }
             }
         }else{
             if($("#ruc_empresa").val().length === 13){
-                alert("Error.... Ruc Incorrecto");   
+                alertify.error("Error.... Ruc Incorrecto");   
                 $("#ruc_empresa").val("");
             }
         }

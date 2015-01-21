@@ -70,12 +70,6 @@ function menu_1() {
                     <li><a href="../html/repacionEquipo.php" target="_blank">Reparación</a></li>
                     <li><a href="../html/entregaEquipos.php" target="_blank">Entrega</a></li>
                     <li><a href="../html/restablecer.php" target="_blank">Restablecer</a></li>
-                    <li><a href="">Estado Equipos</a>
-                        <ul>
-                            <li><a href="../html/reparacionInterna.php" target="_blank">Reparación Interna</a></li>
-                            <li><a href="../html/reparacionExterna.php" target="_blank">Reparación Externa</a></li>
-                        </ul>
-                  </li>
                 </ul>
             </li>
             

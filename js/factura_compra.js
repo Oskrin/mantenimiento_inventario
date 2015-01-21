@@ -1280,7 +1280,8 @@ function inicio() {
             {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true}
         ],
         rowNum: 30,
-        width: 780,
+        width: 900,
+        height: 300,
         sortable: true,
         rowList: [10, 20, 30],
         pager: jQuery('#pager'),

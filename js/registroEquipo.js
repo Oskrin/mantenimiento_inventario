@@ -206,7 +206,7 @@ function flecha_siguiente(){
     var compro2=  $("#comprobante2").val();
     ///////////////////llamar facturas flechas primera parte/////
     if(parseInt(valor) === parseInt(compro2)){
-        alert("Error... Ingreso no creado");
+        alertify.alert("No hay mas registros superiores!!");
     }else{
         $("#btnGuardar").attr("disabled", true);
         $.getJSON('../procesos/retornar_registro_equipo2.php?com=' + valor, function(data) {
@@ -419,7 +419,7 @@ function inicio()
             {name: 'txtAccesorios', index: 'txtAccesorios', editable: true, align: 'center', width: '150', search: false, frozen: true},
             {name: 'txtObservaciones', index: 'txtObservaciones', editable: true, align: 'center', width: '150', search: false, frozen: true},
             {name: 'id_user', index: 'id_user', search: false, editable: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 80},
-            {name: 'nombre_user', index: 'nombre_user', editable: true, align: 'center', width: '150', search: false, frozen: true},
+            {name: 'resp', index: 'resp', editable: true, align: 'center', width: '150', search: false, frozen: true},
             {name: 'id_estado', index: 'id_estado', search: false, editable: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 80},
             {name: 'Estado', index: 'Estado', editable: true, align: 'center', width: '150', search: true, frozen: true}
         ],

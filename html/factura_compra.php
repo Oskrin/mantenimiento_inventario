@@ -30,7 +30,6 @@ $cont1++;
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/link_top.css" rel="stylesheet" />
@@ -39,9 +38,9 @@ $cont1++;
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
         <link href="../css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
 
+        <script type="text/javascript"src="../js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
         <script type="text/javascript" src="../js/jquery-loader.js"></script>
-        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/grid.locale-es.js"></script>
         <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
@@ -105,47 +104,50 @@ $cont1++;
                                             <div class="widget big-stats-container">
                                                 <form id="formularios_fac" name="formularios_fac" method="post" class="form-horizontal">
                                                     <fieldset>
-                                                        <section class="columna_1">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Comprobante:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="comprobante" id="comprobante" readonly class="campo" value="<?php echo $cont1 ?>" style="width: 80px"/>
+                                                        <div class="row">
+                                                             <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Comprobante:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="comprobante" id="comprobante" readonly class="span2" value="<?php echo $cont1 ?>"/>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_2">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Fecha Actual:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="fecha_actual" id="fecha_actual" readonly value="<?php echo date("Y-m-d"); ?>" class="campo" style="width: 100px" />
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Fecha Actual:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="fecha_actual" id="fecha_actual" readonly class="span2" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_3">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Hora Actual:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="hora_actual" id="hora_actual" readonly class="campo" style="width: 100px"/>
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Hora Actual:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="hora_actual" id="hora_actual" readonly class="span2"/>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_4">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli"> Digitad@r:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="digitador" id="digitador" value="<?php echo $_SESSION['nombres'] ?>" class="campo" style="width: 200px" readonly/>
-                                                                    <input type="hidden" name="comprobante2" id="comprobante2" class="campo" style="width: 100px" value="<?php echo $cont1 ?>" />
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli"> Digitad@r:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="digitador" id="digitador" value="<?php echo $_SESSION['nombres'] ?>" class="span3" readonly/>
+                                                                        <input type="hidden" name="comprobante2" id="comprobante2" class="campo" style="width: 100px" value="<?php echo $cont1 ?>" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
+
+                                                        </div>
                                                     </fieldset>
                                                     <br/>
                                                     <fieldset>
                                                         <legend></legend>
-                                                        <table cellpadding="2" border="0" style="margin-left: 10px">
+                                                        <table cellpadding="2" border="0">
                                                             <tr>
                                                                 <td><label style="width: 100%">Proveedor: <font color="red">*</font></label></td>
                                                                 <td><select name="tipo_docu" id="tipo_docu" required style="width: 170px">
@@ -161,7 +163,7 @@ $cont1++;
                                                             </tr>  
                                                         </table>
 
-                                                        <table cellpadding="2" border="0" style="margin-left: 10px">
+                                                        <table cellpadding="2" border="0" >
                                                             <tr>
                                                                 <td><label style="width: 100%">Tipo de comprobante: <font color="red">*</font></label></td>  
                                                                 <td><select name="tipo_comprobante" id="tipo_comprobante" style="width: 300px">
@@ -172,7 +174,7 @@ $cont1++;
                                                             </tr>  
                                                         </table>
 
-                                                        <table cellpadding="2" border="0" style="margin-left: 10px">
+                                                        <table cellpadding="2" border="0" >
                                                             <tr>
                                                                 <td><label style="width: 100%">Fecha registro: </label></td>  
                                                                 <td><input type="text" name="fecha_registro" id="fecha_registro" class="campo" style="width: 120px" value="<?php echo date("Y-m-d"); ?>" readonly /></td>
@@ -183,7 +185,7 @@ $cont1++;
                                                             </tr>
                                                         </table>
 
-                                                        <table cellpadding="2" border="0" style="margin-left: 10px">
+                                                        <table cellpadding="2" border="0" >
                                                             <tr>
                                                                 <td><label style="width: 100%">Nro. de serie: <font color="red">*</font></label></td>
                                                                 <td><input type="text" name="serie1" id="serie1" class="campo" style="width: 150px"/></td>
@@ -194,7 +196,7 @@ $cont1++;
                                                             </tr>
                                                         </table>
 
-                                                        <table cellpadding="2" style="margin-left: 10px">
+                                                        <table cellpadding="2" >
                                                             <tr>
                                                                 <td><label style="width: 100%">Nro. de Autorización: <font color="red">*</font></label></td>
                                                                 <td><input type="text" name="autorizacion" id="autorizacion" class="campo" maxlength="45"/></td>
@@ -213,8 +215,9 @@ $cont1++;
 
                                                     <fieldset>
                                                         <legend>Detalle Factura</legend>
-                                                        <table cellpadding="2" border="0" style="margin-left: 10px">
+                                                        <table cellpadding="2" border="0" >
                                                             <tr>
+                                                                <td><label>Código Barras:</label></td> 
                                                                 <td><label>Código:</label></td>   
                                                                 <td><label>Producto:</label></td>   
                                                                 <td><label>Cantidad:</label></td>   
@@ -225,6 +228,7 @@ $cont1++;
                                                             </tr>
 
                                                             <tr>
+                                                                <td><input type="text" name="cod_barras" id="cod_barras" class="campo" style="width: 180px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="codigo" id="codigo" class="campo" style="width: 180px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="producto" id="producto" class="campo" style="width: 200px"  placeholder="Buscar..."/></td>
                                                                 <td><input type="text" name="cantidad" id="cantidad" class="campo" style="width: 60px" maxlength="10"/></td>
@@ -241,11 +245,64 @@ $cont1++;
                                                             </tr>
                                                         </table>
 
-                                                        <div style="margin-left: 10px">
+                                                        <div>
                                                             <table id="list" align="center"></table>
                                                         </div>
+                                                        
+                                                        <div style="padding: 2px; margin-left: 650px" >
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="total_p">Tarifa 0:</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend input-append">
+                                                                        <span class="add-on">$</span>
+                                                                        <input type="text" name="total_p" id="total_p" readonly value="0.00" class="span1"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                        <table border="0" cellspacing="2" style="margin-left: 625px">
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="total_p2">Tarifa 12:</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend input-append">
+                                                                        <span class="add-on">$</span>
+                                                                        <input type="text" name="total_p2" id="total_p2" readonly value="0.00" class="span1"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="total_p2">12 %Iva:</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend input-append">
+                                                                        <span class="add-on">$</span>
+                                                                        <input type="text" name="iva" id="iva" readonly value="0.00" class="span1"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="desc">Descuento:</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend input-append">
+                                                                        <span class="add-on">$</span>
+                                                                        <input type="text" name="desc" id="desc" readonly value="0.00" class="span1"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="control-group">											
+                                                                <label class="control-label" for="tot">Total:</label>
+                                                                <div class="controls">
+                                                                    <div class="input-prepend input-append">
+                                                                        <span class="add-on">$</span>
+                                                                        <input type="text" name="tot" id="tot" readonly value="0.00" class="span1" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+
+<!--                                                        <table border="0" cellspacing="2" style="margin-left: 625px">
                                                             <tr>
                                                                 <td><label for="total_p" style="width: 100%">Tarifa 0:</label></td>
                                                                 <td><input type="text" style="width:80px" name="total_p" id="total_p" readonly value="0.00" class="campo"/></td>
@@ -266,7 +323,7 @@ $cont1++;
                                                                 <td><label for="tot" style="width:100%" >Total:</label></td>
                                                                 <td><input type="text" style="width:80px" name="tot" id="tot" readonly value="0.00" class="campo" /></td>
                                                             </tr>
-                                                        </table> 
+                                                        </table> -->
                                                         <br />
                                                     </fieldset>
                                                 </form>

@@ -9,7 +9,7 @@ include '../menus/menu.php';
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <title>.:INGRESO USUARIOS:.</title>
+        <title>.:CLIENTES:.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes"> 
         <link rel="stylesheet" type="text/css" href="../css/buttons.css"/>
@@ -18,25 +18,30 @@ include '../menus/menu.php';
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">-->
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/link_top.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../css/alertify.core.css" />
+        <link rel="stylesheet" href="../css/alertify.default.css" id="toggleCSS" />
         <link href="../css/sm-core-css.css" rel="stylesheet" type="text/css" />
         <link href="../css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript"src="../js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
+        <script type="text/javascript" src="../js/jquery-loader.js"></script>
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/grid.locale-es.js"></script>
         <script type="text/javascript" src="../js/jquery.jqGrid.src.js"></script>
         <script type="text/javascript" src="../js/buttons.js" ></script>
         <script type="text/javascript" src="../js/validCampoFranz.js" ></script>
-        <script type="text/javascript" src="../js/usuarios.js"></script>
+        <script type="text/javascript" src="../js/clientes.js"></script>
         <script type="text/javascript" src="../js/datosUser.js"></script>
         <script type="text/javascript" src="../js/ventana_reporte.js"></script>
         <script type="text/javascript" src="../js/guidely/guidely.min.js"></script>
+        <script type="text/javascript" src="../js/alertify.min.js"></script>
         <script type="text/javascript" src="../js/jquery.smartmenus.js"></script>
+        <script type="text/javascript" src="../js/ruc_jquery_validator.min.js"></script>
     </head>
 
     <body>
@@ -50,7 +55,6 @@ include '../menus/menu.php';
             </div>
         </div> 
 
-        <!-- /Inicio  Menu Principal -->
         <div class="subnavbar">
             <div class="subnavbar-inner">
                 <?Php
@@ -67,7 +71,6 @@ include '../menus/menu.php';
                 ?> 
             </div> 
         </div> 
-        <!-- /Fin  Menu Principal -->
 
         <div class="main">
             <div class="main-inner">
@@ -77,25 +80,33 @@ include '../menus/menu.php';
                             <div class="widget ">
                                 <div class="widget-header">
                                     <i class="icon-user"></i>
-                                    <h3>USUARIOS</h3>
+                                    <h3>CLIENTES</h3>
                                 </div> <!-- /widget-header -->
 
                                 <div class="widget-content">
-                                    <div class="tabbable" id="centro">
-                                        <fieldset>
-                                            <table id="list"></table>
-                                            <div id="pager"></div>   
-                                        </fieldset>   
-                                    </div>
+                                    <fieldset>
+                                        <div class="span2">
+                                            
+                                        </div>
+                                       
+
+                                        <!--                                    <div class="span5">
+                                                                                <div class="widget">
+                                                                                    <div class="widget-content">
+                                                                                        <h1>6 Columns</h1>
+                                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>	
+                                                                                    </div>  /widget-content 
+                                                                                </div>  /widget 
+                                                                            </div>  /span6 -->
+                                    </fieldset>
                                 </div> 
-                            </div>
+                            </div> 
                         </div> 
                     </div> 
                 </div> 
             </div> 
         </div> 
         <script type="text/javascript" src="../js/base.js"></script>
-        <script type="text/javascript" src="../js/jquery.ui.datepicker-es.js"></script>
 
         <div class="footer">
             <div class="footer-inner">
@@ -103,10 +114,10 @@ include '../menus/menu.php';
                     <div class="row">
                         <div class="span12">
                             &copy; 2014 <a href=""> <?php echo $_SESSION['empresa']; ?></a>.
-                        </div>
-                    </div>
-                </div>
+                        </div> 
+                    </div> 
+                </div> 
             </div> 
-        </div>
+        </div> 
     </body>
 </html>

@@ -29,7 +29,6 @@ $cont1++;
         <link rel="stylesheet" type="text/css" href="../css/ui.jqgrid.css"/> 
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <link href="../css/font-awesome.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/alertify.core.css" />
@@ -100,91 +99,100 @@ $cont1++;
                                             <div class="widget big-stats-container">
                                                 <form id="formularios_cxc" name="formularios_cxc" method="post" class="form-horizontal">
                                                     <fieldset>
-                                                        <section class="columna_1">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Comprobante:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="comprobante" id="comprobante" readonly class="campo" value="<?php echo $cont1 ?>" style="width: 80px"/>
+                                                        <div class="row">
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Comprobante:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="comprobante" id="comprobante" readonly class="span2" value="<?php echo $cont1 ?>" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_2">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Fecha Actual:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="fecha_actual" id="fecha_actual" readonly value="<?php echo date("Y-m-d"); ?>" class="campo" style="width: 100px" />
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Fecha Actual:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="fecha_actual" id="fecha_actual" readonly  class="span2" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_3">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli">Hora Actual:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="hora_actual" id="hora_actual" readonly class="campo" style="width: 100px"/>
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli">Hora Actual:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="hora_actual" id="hora_actual" readonly class="span2" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
 
-                                                        <section class="columna_4">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="nombres_cli"> Digitad@r:</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="digitador" id="digitador" value="<?php echo $_SESSION['nombres'] ?>" class="campo" style="width: 200px" readonly/>
-                                                                    <input type="hidden" name="comprobante2" id="comprobante2" class="campo" style="width: 100px" value="<?php echo $cont1 ?>" />
+                                                            <div class="span7">
+                                                                <div class="control-group">											
+                                                                    <label class="form-control" for="nombres_cli"> Digitad@r:</label>
+                                                                    <div class="form-control">
+                                                                        <input type="text" name="digitador" id="digitador" value="<?php echo $_SESSION['nombres'] ?>" class="span3" readonly/>
+                                                                        <input type="hidden" name="comprobante2" id="comprobante2" class="campo" style="width: 100px" value="<?php echo $cont1 ?>" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </section>
+                                                        </div>
                                                     </fieldset>
 
                                                     <fieldset>
-                                                        <legend></legend>
-                                                        <section class="columna1">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="ruc_ci">CI de Identidad/RUC: <font color="red">*</font></label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="ruc_ci"  id="ruc_ci" required placeholder="Buscar....." class="campo" />
-                                                                </div>
-                                                            </div>    
-
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="num_factura">Factura Preimpresa: <font color="red">*</font></label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="num_factura"  id="num_factura" required class="campo" />
-                                                                </div>
-                                                            </div> 
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="num_factura">Total: <font color="red">*</font></label>
-                                                                <div class="controls">
-                                                                    <div class="input-prepend input-append">
-                                                                        <span class="add-on">$</span>
-                                                                        <input type="text" name="total" id="total" required maxlength="10" class="campo" style="width: 165px" />
+                                                        <div class="row">
+                                                            <legend></legend>
+                                                            <div class="span6">
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="ruc_ci">CI de Identidad/RUC: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="ruc_ci"  id="ruc_ci" required placeholder="Buscar....." class="span4" />
                                                                     </div>
-                                                                </div>
-                                                            </div> 
-                                                        </section>
+                                                                </div>    
 
-                                                        <section class="columna2">
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="ruc_ci">Nombres: <font color="red">*</font></label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="nombres_completos" id="nombres_completos" class="campo" style="width: 280px" />
-                                                                    <input type="hidden" name="id_cliente" id="id_cliente" required readonly class="campo"/>
-                                                                </div>
-                                                            </div> 
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="num_factura">Factura Preimpresa: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="num_factura"  id="num_factura" required class="span4" />
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="num_factura">Total: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="total" id="total" required maxlength="10" class="span3"  />
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
 
-                                                            <div class="control-group">											
-                                                                <label class="control-label" for="ruc_ci">Documento: <font color="red">*</font></label>
-                                                                <div class="controls">
-                                                                    <select id="tipo_documento" name="tipo_documento" style="width: 210px">
-                                                                        <option value="">......Seleccione Documento......</option>  
-                                                                        <option value="Factura"> Factura</option>
-                                                                        <option value="Nota_venta">Nota o boleta de venta</option>
-                                                                    </select>
-                                                                </div>
+                                                            <div class="span6">
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="ruc_ci">Nombres: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <input type="text" name="nombres_completos" id="nombres_completos" class="span4"  />
+                                                                        <input type="hidden" name="id_cliente" id="id_cliente" required readonly class="campo"/>
+                                                                    </div>
+                                                                </div> 
+
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="ruc_ci">Documento: <font color="red">*</font></label>
+                                                                    <div class="controls">
+                                                                        <select id="tipo_documento" name="tipo_documento" class="span3">
+                                                                            <option value="">......Seleccione Documento......</option>  
+                                                                            <option value="Factura"> Factura</option>
+                                                                            <option value="Nota_venta">Nota o boleta de venta</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div> 
+
+                                                                <div class="control-group">											
+                                                                    <label class="control-label" for="notas">Notas: </label>
+                                                                    <div class="controls">
+                                                                        <textarea type="text" name="notas" id="notas" class="span4" ></textarea>
+
+                                                                    </div>
+                                                                </div> 
                                                             </div> 
-                                                        </section>  
+                                                        </div>
                                                     </fieldset>
                                                 </form>
 
