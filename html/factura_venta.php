@@ -225,7 +225,7 @@ $cont1++;
                                                                 <td><input type="hidden" name="carga_series" id="carga_series" class="campo" /></td>
                                                                 <td><input type="hidden" name="cod_producto" id="cod_producto" class="campo" /></td>
                                                                 <td><input type="hidden" name="des" id="des" class="campo"/></td>
-                                                                <td><input type="hidden" name="inventar" id="inventar" class="campo" /></td>
+                                                                <td><input type="text" name="inventar" id="inventar" class="campo" /></td>
                                                             </tr>
                                                         </table>
 
@@ -233,7 +233,7 @@ $cont1++;
                                                             <table id="list"></table>
                                                         </div>
 
-                                                        <table border="0" cellspacing="2" style="margin-left: 625px">
+                                                        <table border="0" cellspacing="2" style="margin-left: 730px">
                                                             <tr>
                                                                 <td><label for="total_p" style="width: 100%">Tarifa 0:</label></td>
                                                                 <td><input type="text" style="width:80px" name="total_p" id="total_p" readonly value="0.00" class="campo"/></td>
@@ -279,7 +279,6 @@ $cont1++;
                                                 </div>
 
                                                 <div id="buscar_facturas_venta" title="BUSCAR FACTURAS VENTAS">
-
                                                     <table id="list2"><tr><td></td></tr></table>
                                                     <div id="pager2"></div>
                                                 </div> 
